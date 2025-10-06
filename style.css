@@ -248,3 +248,104 @@ footer {
   font-size: 0.9rem;
 }
 
+/* ================== Weather Animations ================== */
+
+/* Sun rays rotation */
+.sun-ray circle {
+  fill: #FFD93B;
+}
+
+.sun-ray g line {
+  transform-origin: 32px 32px;
+  animation: rotateSun 5s linear infinite;
+}
+
+@keyframes rotateSun {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Cloud floating */
+.cloud {
+  animation: floatCloud 6s ease-in-out infinite alternate;
+}
+
+@keyframes floatCloud {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+/* Rain drops animation */
+.drop {
+  stroke-dasharray: 6, 6;
+  animation: rainFall 1s infinite linear;
+}
+
+@keyframes rainFall {
+  0% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(4px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.5; }
+}
+
+/* Snowflakes animation */
+.flake {
+  animation: snowFall 2s infinite linear;
+}
+
+@keyframes snowFall {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(6px) rotate(45deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Flash / lightning */
+.flash {
+  animation: flashStrike 1s infinite;
+}
+
+@keyframes flashStrike {
+  0%, 50%, 100% { opacity: 0; }
+  25%, 75% { opacity: 1; }
+}
+
+/* Weather container alignment */
+.weather-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* ensures boxes are centered */
+  gap: 18px;
+}
+
+.day-card {
+  background: white;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  width: 130px;
+  text-align: center;
+  font-size: 0.95rem;
+  border: 1px solid #e0e6ed;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.day-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.day-card h3 {
+  margin-bottom: 6px;
+  color: #007bff;
+  font-weight: 600;
+}
+
+.weather-icon {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+.temp-high { color: #e63946; font-weight: bold; }
+.temp-low { color: #1d3557; }
+.rain-chance { color: #457b9d; font-style: italic; font-size: 0.9rem; }
+
+
