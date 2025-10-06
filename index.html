@@ -94,22 +94,54 @@
 
     container.innerHTML = '';
 
-    // SVG icons for weather codes
+    // Detailed SVG icons
     const svgIcons = {
-      0: '<svg fill="#FFD93B" viewBox="0 0 64 64"><circle cx="32" cy="32" r="14"/></svg>',         // clear sun
-      1: '<svg fill="#FFD93B" viewBox="0 0 64 64"><circle cx="32" cy="32" r="14"/><circle cx="32" cy="32" r="6" fill="#FFF"/></svg>', // partly sunny
-      2: '<svg fill="#CCCCCC" viewBox="0 0 64 64"><circle cx="32" cy="32" r="14"/></svg>',       // cloudy
-      3: '<svg fill="#A0A0A0" viewBox="0 0 64 64"><circle cx="32" cy="32" r="14"/></svg>',       // overcast
-      45: '<svg fill="#C0C0C0" viewBox="0 0 64 64"><path d="M16 32h32"/></svg>',                 // fog
-      48: '<svg fill="#C0C0C0" viewBox="0 0 64 64"><path d="M16 32h32"/></svg>',
-      51: '<svg fill="#00AFFF" viewBox="0 0 64 64"><path d="M32 16v32"/></svg>',                 // light rain
-      61: '<svg fill="#007BFF" viewBox="0 0 64 64"><path d="M32 16v32"/></svg>',                 // rain
-      71: '<svg fill="#00BFFF" viewBox="0 0 64 64"><path d="M32 16v32"/></svg>',                 // snow
-      95: '<svg fill="#FF8C00" viewBox="0 0 64 64"><path d="M16 16l32 32M48 16L16 48"/></svg>',  // thunderstorm
+      0: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="12" fill="#FFD93B"/><g stroke="#FFD93B" stroke-width="2">
+           <line x1="32" y1="0" x2="32" y2="12"/><line x1="32" y1="52" x2="32" y2="64"/>
+           <line x1="0" y1="32" x2="12" y2="32"/><line x1="52" y1="32" x2="64" y2="32"/>
+           <line x1="8" y1="8" x2="18" y2="18"/><line x1="46" y1="46" x2="56" y2="56"/>
+           <line x1="8" y1="56" x2="18" y2="46"/><line x1="46" y1="18" x2="56" y2="8"/>
+           </g></svg>`, // Sunny
+      1: `<svg viewBox="0 0 64 64">
+            <ellipse cx="36" cy="28" rx="14" ry="14" fill="#FFD93B"/>
+            <ellipse cx="28" cy="36" rx="14" ry="10" fill="#B0C4DE"/>
+          </svg>`, // Partly cloudy
+      2: `<svg viewBox="0 0 64 64">
+            <ellipse cx="32" cy="36" rx="20" ry="12" fill="#B0C4DE"/>
+          </svg>`, // Cloudy
+      3: `<svg viewBox="0 0 64 64">
+            <ellipse cx="32" cy="36" rx="22" ry="14" fill="#778899"/>
+          </svg>`, // Overcast
+      45: `<svg viewBox="0 0 64 64"><line x1="8" y1="32" x2="56" y2="32" stroke="#C0C0C0" stroke-width="3"/><line x1="8" y1="36" x2="56" y2="36" stroke="#C0C0C0" stroke-width="3"/></svg>`, // Fog
+      48: `<svg viewBox="0 0 64 64"><line x1="8" y1="32" x2="56" y2="32" stroke="#C0C0C0" stroke-width="3"/><line x1="8" y1="36" x2="56" y2="36" stroke="#C0C0C0" stroke-width="3"/></svg>`,
+      51: `<svg viewBox="0 0 64 64">
+            <ellipse cx="32" cy="28" rx="18" ry="12" fill="#B0C4DE"/>
+            <line x1="24" y1="40" x2="24" y2="50" stroke="#00AFFF" stroke-width="3"/>
+            <line x1="32" y1="40" x2="32" y2="50" stroke="#00AFFF" stroke-width="3"/>
+            <line x1="40" y1="40" x2="40" y2="50" stroke="#00AFFF" stroke-width="3"/>
+          </svg>`, // Light rain
+      61: `<svg viewBox="0 0 64 64">
+            <ellipse cx="32" cy="28" rx="18" ry="12" fill="#778899"/>
+            <line x1="24" y1="40" x2="24" y2="52" stroke="#007BFF" stroke-width="3"/>
+            <line x1="32" y1="40" x2="32" y2="52" stroke="#007BFF" stroke-width="3"/>
+            <line x1="40" y1="40" x2="40" y2="52" stroke="#007BFF" stroke-width="3"/>
+          </svg>`, // Rain
+      71: `<svg viewBox="0 0 64 64">
+            <ellipse cx="32" cy="28" rx="18" ry="12" fill="#778899"/>
+            <circle cx="24" cy="42" r="2" fill="#FFF"/>
+            <circle cx="32" cy="46" r="2" fill="#FFF"/>
+            <circle cx="40" cy="42" r="2" fill="#FFF"/>
+          </svg>`, // Snow
+      95: `<svg viewBox="0 0 64 64">
+            <ellipse cx="32" cy="28" rx="18" ry="12" fill="#778899"/>
+            <polygon points="32,32 28,44 36,44" fill="#FF8C00"/>
+          </svg>` // Thunderstorm
     };
 
     for (let i = 0; i < days.length; i++) {
-      const dateStr = new Date(days[i]).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      const dateStr = new Date(days[i]).toLocaleDateString('en-US', {
+        weekday: 'short', month: 'short', day: 'numeric'
+      });
       const high = (highs[i] !== undefined) ? Math.round(highs[i]) + '°F' : '—';
       const low = (lows[i] !== undefined) ? Math.round(lows[i]) + '°F' : '—';
       const rainPct = (rain[i] !== undefined) ? Math.round(rain[i]) + '%' : '—';
@@ -126,7 +158,6 @@
       `;
       container.appendChild(card);
     }
-
   } catch (err) {
     console.error(err);
     container.innerHTML = '<p>Unable to load forecast. Please try again later.</p>';
