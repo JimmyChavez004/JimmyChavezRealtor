@@ -203,6 +203,36 @@ nav a:hover {
   margin-bottom: 12px;
 }
 
+/* Sun rotation */
+@keyframes rotate-sun {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.weather-icon svg.sun-ray { animation: rotate-sun 20s linear infinite; transform-origin: 50% 50%; }
+
+/* Cloud sway */
+@keyframes sway-cloud {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+.weather-icon svg.cloud { animation: sway-cloud 6s ease-in-out infinite; }
+
+/* Rain drop falling */
+@keyframes fall-drop {
+  0% { transform: translateY(-10px); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(20px); opacity: 0; }
+}
+.weather-icon svg .drop { animation: fall-drop 1s linear infinite; }
+
+/* Snowflake falling */
+@keyframes fall-snow {
+  0% { transform: translateY(-10px); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(20px); opacity: 0; }
+}
+.weather-icon svg .flake { animation: fall-snow 2s linear infinite; }
+
 /* -------------------- Footer -------------------- */
 footer {
   background: #0d1b2a;
