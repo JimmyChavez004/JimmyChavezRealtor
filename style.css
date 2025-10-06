@@ -202,6 +202,14 @@ nav a:hover {
   font-weight: 600;
 }
 
+.day-card:hover .sun-ray {
+  animation-duration: 10s; /* faster rotation on hover */
+}
+
+.day-card:hover .cloud {
+  animation-duration: 3s; /* faster sway */
+}
+
 .temp-high {
   color: #e63946;
   font-weight: bold;
