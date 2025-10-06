@@ -1,4 +1,4 @@
-/* -------------------- General Styles -------------------- */
+/* ------------------- General Styles ------------------- */
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -7,7 +7,7 @@ body {
   line-height: 1.6;
 }
 
-/* -------------------- Header + Navigation -------------------- */
+/* Header + Navigation */
 header {
   background: #0d1b2a;
   padding: 20px;
@@ -25,19 +25,19 @@ nav a:hover {
   color: #1f6feb;
 }
 
-/* -------------------- Hero Section -------------------- */
+/* Hero Section */
 .hero {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #0d1b2a, #1b263b);
+  background: #001f3f;
   padding: 40px 20px;
 }
 
 .hero img {
-  max-width: 280px;
-  border-radius: 12px;
+  max-width: 250px;
+  border-radius: 10px;
   margin: 20px;
 }
 
@@ -57,7 +57,7 @@ nav a:hover {
   font-size: 1.1rem;
 }
 
-/* -------------------- Container -------------------- */
+/* Container */
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -70,7 +70,35 @@ nav a:hover {
   color: #1f6feb;
 }
 
-/* -------------------- Contact Form -------------------- */
+/* Footer */
+footer {
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #444;
+  border-top: 1px solid #ddd;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.broker-logo {
+  height: 45px;
+  width: auto;
+  margin-top: 5px;
+}
+
+.built-with {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* Contact Form */
 .contact-form {
   max-width: 600px;
   margin: 0 auto 40px;
@@ -127,7 +155,7 @@ nav a:hover {
   background-color: #0056b3;
 }
 
-/* -------------------- Weather Section -------------------- */
+/* ------------------- Weather Section ------------------- */
 .weather-section {
   text-align: center;
   background: #f5f8fc;
@@ -143,12 +171,6 @@ nav a:hover {
   letter-spacing: 0.5px;
 }
 
-.weather-icon svg {
-  width: 50px;
-  height: 50px;
-  margin: 8px 0;
-}
-
 .weather-container {
   display: flex;
   flex-wrap: wrap;
@@ -158,10 +180,17 @@ nav a:hover {
   max-width: 1000px;
 }
 
-/* Hover effect for day cards */
 .day-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+  width: 140px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  border: 1px solid #e0e6ed;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: default;
 }
 
 .day-card:hover {
@@ -169,81 +198,53 @@ nav a:hover {
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
-/* Temperature hover effect */
-.temp-high:hover {
-  color: #e63946; /* Highlight red */
-  font-weight: bold;
-  transition: color 0.3s ease;
+/* Weather icon scaling */
+.weather-icon {
+  font-size: 2rem;
+  margin: 10px 0;
 }
 
-.temp-low:hover {
-  color: #1d3557; /* Highlight dark blue */
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-/* Rain chance hover effect */
-.rain-chance:hover {
-  color: #007BFF;
-  font-style: normal;
-  font-weight: 600;
-  transition: color 0.3s ease, font-weight 0.3s ease;
-}
-
-/* Optional: make the icon scale slightly on hover */
-.weather-icon:hover svg {
-  transform: scale(1.1);
+.weather-icon svg {
+  width: 50px;
+  height: 50px;
   transition: transform 0.3s ease;
 }
 
-.day-card h3 {
-  margin-bottom: 6px;
-  color: #007bff;
-  font-weight: 600;
+.weather-icon:hover svg {
+  transform: scale(1.1);
 }
 
-.day-card:hover .sun-ray {
-  animation-duration: 10s; /* faster rotation on hover */
-}
-
-.day-card:hover .cloud {
-  animation-duration: 3s; /* faster sway */
-}
-
-.temp-high {
+/* Temperature and rain hover effects */
+.temp-high:hover {
   color: #e63946;
   font-weight: bold;
 }
 
-.temp-low {
+.temp-low:hover {
   color: #1d3557;
+  font-weight: bold;
 }
 
-.rain-chance {
-  color: #457b9d;
-  font-style: italic;
-  font-size: 0.9rem;
+.rain-chance:hover {
+  color: #007BFF;
+  font-style: normal;
+  font-weight: 600;
 }
 
-.weather-updated {
-  font-size: 0.85rem;
-  color: #475569; /* or a color matching your theme */
-  margin-bottom: 12px;
-}
-
+/* ------------------- Animated SVG Effects ------------------- */
 /* Sun rotation */
 @keyframes rotate-sun {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-.weather-icon svg.sun-ray { animation: rotate-sun 20s linear infinite; transform-origin: 50% 50%; }
+.sun-ray { animation: rotate-sun 20s linear infinite; transform-origin: 50% 50%; }
 
 /* Cloud sway */
 @keyframes sway-cloud {
   0%, 100% { transform: translateX(0); }
   50% { transform: translateX(4px); }
 }
-.weather-icon svg.cloud { animation: sway-cloud 6s ease-in-out infinite; }
+.cloud { animation: sway-cloud 6s ease-in-out infinite; }
 
 /* Rain drop falling */
 @keyframes fall-drop {
@@ -251,7 +252,7 @@ nav a:hover {
   30% { opacity: 1; }
   100% { transform: translateY(20px); opacity: 0; }
 }
-.weather-icon svg .drop { animation: fall-drop 1s linear infinite; }
+.drop { animation: fall-drop 1s linear infinite; }
 
 /* Snowflake falling */
 @keyframes fall-snow {
@@ -259,44 +260,15 @@ nav a:hover {
   30% { opacity: 1; }
   100% { transform: translateY(20px); opacity: 0; }
 }
-.weather-icon svg .flake { animation: fall-snow 2s linear infinite; }
+.flake { animation: fall-snow 2s linear infinite; }
 
 /* Lightning flash */
 @keyframes flash-lightning {
   0%, 80%, 100% { opacity: 0; }
   85%, 95% { opacity: 1; }
 }
-.weather-icon svg .flash { animation: flash-lightning 2s infinite; }
+.flash { animation: flash-lightning 2s infinite; }
 
-/* -------------------- Footer -------------------- */
-footer {
-  background: #0d1b2a;
-  text-align: center;
-  padding: 20px;
-  color: #aaa;
-  font-size: 0.9rem;
-  border-top: 1px solid #1f6feb;
-}
-
-footer a {
-  color: #1f6feb;
-  text-decoration: none;
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.broker-logo {
-  height: 45px;
-  width: auto;
-  margin-top: 5px;
-}
-
-.built-with {
-  font-size: 0.8rem;
-  color: #777;
-}
+/* Optional hover speed-up for sun/cloud */
+.day-card:hover .sun-ray { animation-duration: 10s; }
+.day-card:hover .cloud { animation-duration: 3s; }
