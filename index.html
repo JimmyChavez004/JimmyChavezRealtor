@@ -1,119 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Jimmy Chavez - Coeur d'Alene Realtor</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jimmy Chavez, REALTOR® | Future Realty Idaho</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <!-- Header -->
   <header>
+    <h1>Jimmy Chavez, REALTOR®</h1>
+    <p>Future Realty Idaho</p>
     <nav>
       <a href="index.html">Home</a>
-      <a href="listings.html">Listings</a>
-      <a href="blog.html">Blog</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero">
-  <img src="images/Headshot.jpeg" alt="Jimmy Chavez Realtor Headshot">
-  <div class="hero-text">
-    <h1>Jimmy Chavez</h1>
-    <p>Realtor at <strong>Future Realty</strong>, serving Coeur d’Alene and all of Kootenai County. As a new agent, my mission is to build trust through clear communication, local market knowledge, and personal service. Whether you're buying, selling, or investing, I'm here to help every step of the way!</p>
-  </div>
-</section>
+    <img src="images/jimmychavez.jpg" alt="Jimmy Chavez Realtor" />
+    <div class="hero-text">
+      <h1>Your Idaho Real Estate Partner</h1>
+      <p>
+        Helping families and investors find their dream homes and properties in Coeur d’Alene, Hayden, Rathdrum, and beyond.
+      </p>
+    </div>
+  </section>
 
-  <div class="container">
-<section id="weather" class="weather-section">
-  <h2>7-Day Weather Forecast for Coeur d'Alene, ID</h2>
-  <div id="weather-container" class="weather-container">
-    <p>Loading forecast...</p>
-  </div>
-</section>
+  <!-- Weather Section -->
+  <section id="weather" class="weather-section">
+    <h2>7-Day Weather Forecast for Coeur d’Alene, ID</h2>
+    <div id="weather-container" class="weather-container">
+      <p>Loading forecast...</p>
+    </div>
+  </section>
 
-    <h2>Connect with Me</h2>
-    <p>Follow me on Facebook for real estate tips, listings, and market updates:</p>
-    <ul>
-      <li><a href="https://www.facebook.com/profile.php?id=61580349646856" target="_blank">Business Page: Jimmy Chavez with Future Realty</a></li>
-      <li><a href="https://www.facebook.com/jimmy.chavez.104"_blank">Personal Facebook</a></li>
-    </ul>
-  </div>
+  <!-- Contact Form -->
+  <section class="contact-form">
+    <h2>Contact Jimmy</h2>
+    <p>Have a question about buying or selling a home? Let’s connect.</p>
 
+    <form action="https://formspree.io/f/YOUR-FORM-ID" method="POST">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" placeholder="Your Name" required />
+
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" placeholder="Your Email" required />
+
+      <label for="message">Message</label>
+      <textarea name="message" id="message" placeholder="Your Message" rows="5" required></textarea>
+
+      <input type="hidden" name="_next" value="thankyou.html" />
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
   <footer>
-  <div class="footer-content">
-    <p>
-      © 2025 <strong>Jimmy Chavez, Realtor&reg;</strong> — Licensed with 
-      <strong>Future Realty</strong>
-    </p>
-    <img src="images/future-realty-idaho-logo.png" 
-         alt="Future Realty Idaho Logo" 
-         class="broker-logo">
-    <p class="built-with">Built with ❤️ on GitHub Pages</p>
-  </div>
-</footer>
-<script>
-  async function loadWeather() {
-    // Coeur d’Alene, ID coordinates
-    const response = await fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=47.6777&longitude=-116.7805&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=America/Los_Angeles"
-    );
-    const data = await response.json();
+    <div class="footer-content">
+      <p>© 2025 Jimmy Chavez, REALTOR® — Future Realty Idaho</p>
+      <img src="images/future-realty-logo.png" alt="Future Realty Idaho Logo" class="broker-logo" />
+      <p class="built-with">Built with ❤️ using GitHub Pages</p>
+    </div>
+  </footer>
 
-    const days = data.daily.time;
-    const highs = data.daily.temperature_2m_max;
-    const lows = data.daily.temperature_2m_min;
-    const rain = data.daily.precipitation_probability_max;
-    const codes = data.daily.weathercode;
+  <!-- Weather Script -->
+  <script>
+    async function loadWeather() {
+      const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=47.6777&longitude=-116.7805&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&timezone=America/Los_Angeles");
+      const data = await response.json();
 
-    const container = document.getElementById("weather-container");
-    container.innerHTML = "";
+      const days = data.daily.time;
+      const highs = data.daily.temperature_2m_max;
+      const lows = data.daily.temperature_2m_min;
+      const rain = data.daily.precipitation_probability_max;
+      const codes = data.daily.weathercode;
 
-    // Mapping Open-Meteo weather codes to simple emojis
-    const icons = {
-      0: "☀️",   // Clear sky
-      1: "🌤️",  // Mainly clear
-      2: "⛅",   // Partly cloudy
-      3: "☁️",   // Overcast
-      45: "🌫️",  // Fog
-      48: "🌫️",  // Depositing rime fog
-      51: "🌦️",  // Light drizzle
-      61: "🌧️",  // Rain
-      63: "🌧️",  // Moderate rain
-      65: "🌧️",  // Heavy rain
-      71: "🌨️",  // Snow
-      73: "🌨️",
-      75: "❄️",
-      95: "⛈️",  // Thunderstorm
-      99: "⛈️"
-    };
+      const icons = {
+        0: "☀️", 1: "🌤️", 2: "⛅", 3: "☁️",
+        45: "🌫️", 48: "🌫️", 51: "🌦️", 61: "🌧️",
+        71: "🌨️", 80: "🌦️", 95: "⛈️"
+      };
 
-    for (let i = 0; i < days.length; i++) {
-      const date = new Date(days[i]).toLocaleDateString("en-US", {
-        weekday: "short",
-        month: "short",
-        day: "numeric"
-      });
+      const container = document.getElementById("weather-container");
+      container.innerHTML = "";
 
-      const icon = icons[codes[i]] || "🌡️";
-      const dayCard = document.createElement("div");
-      dayCard.classList.add("day-card");
-      dayCard.innerHTML = `
-        <h3>${date}</h3>
-        <div class="weather-icon">${icon}</div>
-        <p>High: ${Math.round(highs[i])}°F</p>
-        <p>Low: ${Math.round(lows[i])}°F</p>
-        <p>Rain: ${rain[i]}%</p>
-      `;
-      container.appendChild(dayCard);
+      for (let i = 0; i < days.length; i++) {
+        const date = new Date(days[i]).toLocaleDateString("en-US", {
+          weekday: "short",
+          month: "short",
+          day: "numeric"
+        });
+        const dayCard = document.createElement("div");
+        dayCard.classList.add("day-card");
+
+        const icon = icons[codes[i]] || "🌤️";
+
+        dayCard.innerHTML = `
+          <h3>${date}</h3>
+          <div class="weather-icon">${icon}</div>
+          <p class="temp-high">High: ${Math.round(highs[i])}°F</p>
+          <p class="temp-low">Low: ${Math.round(lows[i])}°F</p>
+          <p class="rain-chance">Rain: ${rain[i]}%</p>
+        `;
+        container.appendChild(dayCard);
+      }
     }
-  }
 
-  loadWeather();
-</script>
-
+    loadWeather();
+  </script>
 </body>
 </html>
-
-
-
