@@ -251,6 +251,179 @@ footer {
 }
 
 /* ================== Weather Animations ================== */
+/* ================ Clean site + modern weather animations ================ */
+
+/* ---------- Base / layout ---------- */
+:root{
+  --accent:#007bff;
+  --bg:#0a0a0a;
+  --panel:#ffffff;
+  --muted:#777;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background:var(--bg);
+  color:#f5f5f5;
+  line-height:1.5;
+}
+
+/* Header */
+header{background:#0d1b2a;padding:18px 12px;text-align:center}
+header h1{margin:0;font-size:1.3rem}
+nav{margin-top:8px}
+nav a{color:#f5f5f5;margin:0 12px;font-weight:600}
+
+/* Hero */
+.hero{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:18px;padding:36px 20px;background:linear-gradient(135deg,#0d1b2a,#132536);
+}
+.hero img{max-width:220px;border-radius:12px;display:block}
+.hero-text{max-width:680px}
+.hero-text h1{margin:0 0 8px;font-size:2rem;color:#fff}
+.hero-text p{margin:0;color:#dcdcdc;font-size:1rem}
+
+/* Contact form */
+.contact-form{
+  max-width:680px;margin:28px auto;padding:22px;background:#f9f9f9;border-radius:12px;color:#222;
+  box-shadow:0 6px 20px rgba(0,0,0,0.12);
+}
+.contact-form h2{margin-top:0;text-align:center}
+.contact-form input,.contact-form textarea{
+  width:100%;padding:10px 12px;margin:10px 0;border-radius:8px;border:1px solid #ccc;font-size:1rem;
+}
+.contact-form button{
+  width:100%;padding:12px;border-radius:8px;background:var(--accent);color:#fff;border:0;font-weight:700;
+  cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;
+}
+.contact-form button:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,0.12)}
+
+/* Footer */
+footer{background:#f8f8f8;padding:18px 12px;text-align:center;color:#333}
+.footer-content{display:flex;flex-direction:column;align-items:center;gap:6px}
+.built-with{font-size:0.85rem;color:var(--muted)}
+
+/* Broker logo styles (bigger + pop + glow) */
+.broker-logo-inline{
+  height:60px;width:auto;vertical-align:middle;margin:0 8px 0 0;
+  padding:6px;border-radius:10px;background:linear-gradient(135deg,#ffffff22,#ffffff10);
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);transition:transform .25s ease, box-shadow .25s ease;
+}
+.broker-logo-inline:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,0.32)}
+.broker-logo-glow{position:relative;display:inline-block}
+.broker-logo-glow::after{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:140%;height:140%;border-radius:14px;background:rgba(0,123,255,0.24);filter:blur(18px);
+  opacity:.6;animation:pulseGlow 2.5s ease-in-out infinite;z-index:-1;
+}
+@keyframes pulseGlow{0%{transform:translate(-50%,-50%) scale(.94);opacity:.45}50%{transform:translate(-50%,-50%) scale(1.08);opacity:.75}100%{transform:translate(-50%,-50%) scale(.94);opacity:.45}}
+
+/* ===== Weather section ===== */
+.weather-section{
+  text-align:center;background:#f5f8fc;padding:40px 16px;border-top:3px solid var(--accent);
+}
+.weather-section h2{margin:0 0 18px;color:#003366;font-size:1.6rem}
+.weather-container{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:16px;max-width:1100px;margin:0 auto;
+}
+
+/* Card */
+.day-card{
+  width:150px;background:var(--panel);color:#111;border-radius:14px;padding:14px;
+  text-align:center;box-shadow:0 8px 20px rgba(12,23,40,0.06);
+  border:1px solid #e6eef8;transition:transform .22s ease,box-shadow .22s ease;
+}
+.day-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(12,23,40,0.12)}
+.day-card h3{margin:0 0 8px;color:var(--accent);font-weight:700;font-size:0.95rem}
+.temp-high{color:#e63946;font-weight:700}
+.temp-low{color:#1d3557;margin:6px 0}
+.rain-chance{color:#457b9d;font-size:0.9rem}
+
+/* ===== Animated icon base ===== */
+.anim-icon{width:92px;height:72px;margin:6px auto;position:relative;overflow:visible}
+.anim-icon .sun-core{position:absolute;left:50%;top:18px;transform:translateX(-50%);width:52px;height:52px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, #fff1a8 0%, #ffd93b 45%, #ffb347 100%);
+  box-shadow:0 6px 24px rgba(255,200,60,0.28);
+}
+.anim-icon .sun-core.small{width:36px;height:36px;top:6px}
+.anim-icon .sun-ray{position:absolute;left:50%;top:10px;height:3px;width:86px;background:linear-gradient(90deg,transparent,#ffd93b,transparent);
+  transform-origin:center;opacity:.9;border-radius:2px}
+
+/* rays placement */
+.anim-icon .ray1{transform:translate(-50%,0) rotate(0deg)}
+.anim-icon .ray2{transform:translate(-50%,0) rotate(45deg)}
+.anim-icon .ray3{transform:translate(-50%,0) rotate(90deg)}
+.anim-icon .ray4{transform:translate(-50%,0) rotate(135deg)}
+/* ray rotation animation */
+.sun-ray{animation:spinRays 8s linear infinite}
+@keyframes spinRays{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+/* ===== Cloud visuals ===== */
+.cloud{position:absolute;background:linear-gradient(180deg,#f4f7fb,#dfe9f6);border-radius:999px;filter:drop-shadow(0 6px 14px rgba(0,0,0,0.06));}
+.cloud.cloud-front{width:86px;height:36px;left:6px;top:16px}
+.cloud.cloud-back{width:110px;height:44px;left:-6px;top:6px;opacity:.95}
+.cloud.cloud-layer.layer1{width:106px;height:42px;left:6px;top:14px}
+.cloud.cloud-layer.layer2{width:82px;height:36px;left:-4px;top:26px;opacity:0.95}
+
+/* cloud gentle drift */
+.cloud{animation:cloudDrift 6.2s ease-in-out infinite alternate}
+@keyframes cloudDrift{0%{transform:translateX(0)}100%{transform:translateX(6px)}}
+
+/* ===== Rain visuals ===== */
+.raindrops{position:absolute;left:50%;top:46px;transform:translateX(-50%);width:70px;height:40px;pointer-events:none}
+.raindrops .drop{position:absolute;bottom:0;width:3px;height:10px;background:linear-gradient(#bfe9ff,#007bff);border-radius:2px;opacity:0;
+  animation:dropFall 1s linear infinite}
+.raindrops .drop:nth-child(1){left:6px;animation-delay:0s}
+.raindrops .drop:nth-child(2){left:20px;animation-delay:.2s}
+.raindrops .drop:nth-child(3){left:36px;animation-delay:.4s}
+.raindrops .drop:nth-child(4){left:50px;animation-delay:.6s}
+.raindrops .drop:nth-child(5){left:64px;animation-delay:.8s}
+@keyframes dropFall{0%{transform:translateY(-6px);opacity:0}40%{opacity:1}100%{transform:translateY(14px);opacity:0}}
+
+/* ===== Snow visuals ===== */
+.flakes{position:absolute;left:50%;top:46px;transform:translateX(-50%);width:70px;height:40px;pointer-events:none}
+.flakes .flake{position:absolute;color:#ffffff;font-size:14px;opacity:0;animation:snowFall 2.5s linear infinite}
+.flakes .flake:nth-child(1){left:12px;animation-delay:0s}
+.flakes .flake:nth-child(2){left:36px;animation-delay:.6s}
+.flakes .flake:nth-child(3){left:56px;animation-delay:1.2s}
+@keyframes snowFall{0%{transform:translateY(-2px) rotate(0deg);opacity:0}40%{opacity:1}100%{transform:translateY(18px) rotate(28deg);opacity:0}}
+
+/* ===== Thunder visuals ===== */
+.bolt, .bolt2{
+  position:absolute;left:50%;top:36px;transform:translateX(-50%) scale(.9);width:12px;height:24px;
+  background:linear-gradient(180deg,#ffecb3,#ffb347);clip-path:polygon(50% 0, 60% 36%, 46% 36%, 56% 100%, 40% 62%, 52% 62%);
+  opacity:0;filter:drop-shadow(0 8px 18px rgba(255,160,0,0.18));
+  animation:boltFlash 2s infinite;
+}
+.bolt2{left:66%;top:40px;transform:translateX(-50%) scale(.8);animation-delay:.6s}
+@keyframes boltFlash{0%{opacity:0}8%{opacity:1}18%{opacity:0}50%{opacity:0}58%{opacity:1}66%{opacity:0}100%{opacity:0}}
+
+/* ===== Fog visuals ===== */
+.fog-lines{position:absolute;left:50%;top:40px;transform:translateX(-50%);width:80px;height:32px;pointer-events:none}
+.fog-lines span{position:absolute;left:0;height:6px;width:80px;background:linear-gradient(90deg,#ffffff88,#ffffff44,#ffffff88);border-radius:6px;opacity:0.35}
+.fog-lines span:nth-child(1){top:4px;animation:fogMove 8s linear infinite}
+.fog-lines span:nth-child(2){top:14px;animation:fogMove 10s linear infinite}
+.fog-lines span:nth-child(3){top:24px;animation:fogMove 12s linear infinite}
+@keyframes fogMove{0%{transform:translateX(-30px);opacity:.25}50%{transform:translateX(10px);opacity:.45}100%{transform:translateX(-30px);opacity:.25}}
+
+/* ===== Responsive tweaks ===== */
+@media (max-width:900px){
+  .hero img{max-width:160px}
+  .broker-logo-inline{height:48px}
+  .day-card{width:140px}
+  .anim-icon{width:84px;height:66px}
+}
+@media (max-width:480px){
+  .hero{padding:22px}
+  .hero-text h1{font-size:1.4rem}
+  .contact-form{padding:14px}
+  .broker-logo-inline{height:44px}
+  .day-card{width:92%}
+  .anim-icon{width:80px;height:60px}
+}
 
 /* Sun rays rotation */
 .sun-ray circle {
