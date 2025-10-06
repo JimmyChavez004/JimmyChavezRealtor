@@ -70,90 +70,70 @@
   <!-- Weather Script -->
   <script>
 (async function() {
-  // === Config: change coordinates if you want a different city ===
-  const LAT = 47.6777;    // Coeur d'Alene
+  const LAT = 47.6777;
   const LON = -116.7805;
 
-  // Request 7 days and Fahrenheit explicitly
   const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}` +
                  `&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max` +
                  `&timezone=America/Los_Angeles&temperature_unit=fahrenheit&forecast_days=7`;
 
   const container = document.getElementById('weather-container');
-  if (!container) {
-    console.warn('No element with id="weather-container" found.');
-    return;
-  }
+  if (!container) return;
 
   container.innerHTML = '<p>Loading forecast…</p>';
 
   try {
     const res = await fetch(apiUrl);
-    if (!res.ok) throw new Error(`Weather API error: ${res.status} ${res.statusText}`);
     const data = await res.json();
 
-    // safe access
     const days = data?.daily?.time ?? [];
     const highs = data?.daily?.temperature_2m_max ?? [];
     const lows = data?.daily?.temperature_2m_min ?? [];
     const rain = data?.daily?.precipitation_probability_max ?? [];
     const codes = data?.daily?.weathercode ?? [];
 
-    if (!days.length) {
-      container.innerHTML = '<p>Forecast unavailable right now. Please try again later.</p>';
-      return;
-    }
+    container.innerHTML = '';
 
-    // weather code → emoji/icon map (expanded)
-    const icons = {
-      0: "☀️", 1: "🌤️", 2: "⛅", 3: "☁️",
-      45: "🌫️", 48: "🌫️",
-      51: "🌦️", 53: "🌦️", 55: "🌧️",
-      56: "🌧️", 57: "🌧️",
-      61: "🌧️", 63: "🌧️", 65: "🌧️",
-      66: "🌧️", 67: "🌧️",
-      71: "🌨️", 73: "🌨️", 75: "❄️",
-      80: "🌦️", 81: "🌧️", 82: "🌧️",
-      85: "🌨️", 86: "🌨️",
-      95: "⛈️", 96: "⛈️", 99: "⛈️"
+    // SVG icons for weather codes
+    const svgIcons = {
+      0: '<svg fill="#FFD93B" viewBox="0 0 64 64"><circle cx="32" cy="32" r="14"/></svg>',         // clear sun
+      1: '<svg fill="#FFD93B" viewBox="0 0 64 64"><circle cx="32" cy="32" r="14"/><circle cx="32" cy="32" r="6" fill="#FFF"/></svg>', // partly sunny
+      2: '<svg fill="#CCCCCC" viewBox="0 0 64 64"><circle cx="32" cy="32" r="14"/></svg>',       // cloudy
+      3: '<svg fill="#A0A0A0" viewBox="0 0 64 64"><circle cx="32" cy="32" r="14"/></svg>',       // overcast
+      45: '<svg fill="#C0C0C0" viewBox="0 0 64 64"><path d="M16 32h32"/></svg>',                 // fog
+      48: '<svg fill="#C0C0C0" viewBox="0 0 64 64"><path d="M16 32h32"/></svg>',
+      51: '<svg fill="#00AFFF" viewBox="0 0 64 64"><path d="M32 16v32"/></svg>',                 // light rain
+      61: '<svg fill="#007BFF" viewBox="0 0 64 64"><path d="M32 16v32"/></svg>',                 // rain
+      71: '<svg fill="#00BFFF" viewBox="0 0 64 64"><path d="M32 16v32"/></svg>',                 // snow
+      95: '<svg fill="#FF8C00" viewBox="0 0 64 64"><path d="M16 16l32 32M48 16L16 48"/></svg>',  // thunderstorm
     };
 
-    container.innerHTML = ''; // clear
-
-    // Optional: show last updated time
-    const updated = document.createElement('div');
-    updated.className = 'weather-updated';
-    updated.textContent = 'Last updated: ' + new Date().toLocaleString();
-    container.appendChild(updated);
-
-    // Create day cards
     for (let i = 0; i < days.length; i++) {
-      const dateStr = new Date(days[i]).toLocaleDateString('en-US', {
-        weekday: 'short', month: 'short', day: 'numeric'
-      });
-
+      const dateStr = new Date(days[i]).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
       const high = (highs[i] !== undefined) ? Math.round(highs[i]) + '°F' : '—';
-      const low  = (lows[i]  !== undefined) ? Math.round(lows[i])  + '°F' : '—';
+      const low = (lows[i] !== undefined) ? Math.round(lows[i]) + '°F' : '—';
       const rainPct = (rain[i] !== undefined) ? Math.round(rain[i]) + '%' : '—';
-      const icon = icons[codes[i]] || '🌡️';
+      const icon = svgIcons[codes[i]] || svgIcons[0];
 
       const card = document.createElement('div');
       card.className = 'day-card';
       card.innerHTML = `
         <h3>${dateStr}</h3>
-        <div class="weather-icon" aria-hidden="true">${icon}</div>
+        <div class="weather-icon">${icon}</div>
         <p class="temp-high">High: ${high}</p>
         <p class="temp-low">Low: ${low}</p>
         <p class="rain-chance">Rain: ${rainPct}</p>
       `;
       container.appendChild(card);
     }
+
   } catch (err) {
     console.error(err);
-    container.innerHTML = '<p>Unable to load forecast. Please check your internet connection or try again later.</p>';
+    container.innerHTML = '<p>Unable to load forecast. Please try again later.</p>';
   }
 })();
 </script>
+
 
 </body>
 </html>
