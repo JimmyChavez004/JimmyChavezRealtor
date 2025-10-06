@@ -1,64 +1,148 @@
-/* ------------------- General Styles ------------------- */
-body { margin:0; font-family:Arial, Helvetica, sans-serif; background:#0a0a0a; color:#f5f5f5; line-height:1.6; }
-header { background:#0d1b2a; padding:20px; text-align:center; }
-nav a { color:#f5f5f5; margin:0 15px; text-decoration:none; font-weight:bold; }
-nav a:hover { color:#1f6feb; }
+/* ================== General Styles ================== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  background-color: #0a0a0a;
+  color: #f5f5f5;
+  line-height: 1.6;
+}
 
-/* Hero Section */
-.hero { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; background:linear-gradient(135deg,#0d1b2a,#1b263b); padding:40px 20px; }
-.hero img { max-width:250px; border-radius:12px; margin:20px; }
-.hero-text { max-width:600px; margin:20px; }
-.hero-text h1 { font-size:2.5rem; margin-bottom:15px; }
-.hero-text p { font-size:1.1rem; color:#dcdcdc; }
-.broker-logo-inline { height:24px; width:auto; vertical-align:middle; margin:0 6px 0 0; }
+a {
+  text-decoration: none;
+  font-weight: bold;
+}
 
-/* Contact Form */
-.contact-form { max-width:600px; margin:0 auto 40px; padding:25px; background:#f9f9f9; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); color:#333; }
-.contact-form h2 { text-align:center; margin-bottom:10px; font-size:1.8rem; }
-.contact-form p { text-align:center; margin-bottom:20px; }
-.contact-form input, .contact-form textarea { width:100%; padding:10px 12px; margin-bottom:15px; border:1px solid #ccc; border-radius:8px; font-size:1rem; }
-.contact-form button { width:100%; padding:12px; background:#007bff; color:white; font-size:1.1rem; border:none; border-radius:8px; cursor:pointer; transition:background-color 0.3s ease; }
-.contact-form button:hover { background:#0056b3; }
+a:hover {
+  color: #1f6feb;
+}
 
-/* Weather Section */
-.weather-section { text-align:center; background:#f5f8fc; padding:50px 20px; border-top:2px solid #007bff; font-family:'Segoe UI',Arial,sans-serif; }
-.weather-section h2 { margin-bottom:25px; color:#003366; font-size:1.8rem; letter-spacing:0.5px; }
-.weather-container { display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start; gap:18px; }
-.day-card { background:white; border-radius:14px; padding:18px; box-shadow:0 4px 10px rgba(0,0,0,0.08); width:130px; text-align:center; font-size:0.95rem; border:1px solid #e0e6ed; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.day-card:hover { transform: translateY(-6px) scale(1.05); box-shadow:0 8px 16px rgba(0,0,0,0.15); }
-.day-card h3 { margin-bottom:6px; color:#007bff; font-weight:600; }
-.weather-icon { font-size:2rem; margin:10px 0; }
-.day-card:hover .weather-icon { animation:bounceIcon 0.6s ease forwards; }
-.temp-high { color:#e63946; font-weight:bold; }
-.temp-low { color:#1d3557; }
-.rain-chance { color:#457b9d; font-style:italic; font-size:0.9rem; }
+/* ================== Header + Navigation ================== */
+header {
+  background: #0d1b2a;
+  padding: 20px;
+  text-align: center;
+}
 
-/* Weather Icon Animations */
-.sun-ray circle, .sun-ray line { transform-origin:32px 32px; animation:rotateSun 20s linear infinite; }
-@keyframes rotateSun { 0%{transform:rotate(0deg);}100%{transform:rotate(360deg);} }
-.cloud { animation:driftCloud 6s ease-in-out infinite alternate; }
-@keyframes driftCloud { 0%{transform:translateX(0);}100%{transform:translateX(5px);} }
-.drop { animation:fallDrop 1s linear infinite; }
-@keyframes fallDrop {0%{transform:translateY(0);opacity:0;}50%{opacity:1;}100%{transform:translateY(10px);opacity:0;} }
-.flake { animation:fallFlake 2s linear infinite; }
-@keyframes fallFlake {0%{transform:translateY(0);opacity:0;}50%{opacity:1;}100%{transform:translateY(10px);opacity:0;} }
-.flash { animation:flashLight 1s linear infinite; }
-@keyframes flashLight {0%,90%{opacity:0;}91%,100%{opacity:1;} }
-@keyframes bounceIcon { 0%{transform:translateY(0);}25%{transform:translateY(-8px);}50%{transform:translateY(0);}75%{transform:translateY(-4px);}100%{transform:translateY(0);} }
+nav a {
+  color: #f5f5f5;
+  margin: 0 15px;
+}
 
-/* Footer */
-footer { background:#f8f8f8; text-align:center; padding:20px; font-size:0.9rem; color:#444; border-top:1px solid #ddd; }
-.footer-content { display:flex; flex-direction:column; align-items:center; gap:8px; }
-.built-with { font-size:0.8rem; color:#777; }
+/* ================== Hero Section ================== */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background: #001f3f; /* Dark blue */
+  padding: 40px 20px;
+}
 
-/* Make Future Realty logo pop */
+.hero img {
+  max-width: 250px;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.hero-text {
+  max-width: 600px;
+  margin: 20px;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  color: #dddddd;
+}
+
+/* ================== Contact Form ================== */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto 40px;
+  padding: 25px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  color: #333;
+}
+
+.contact-form h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+.contact-form p {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #0056b3;
+}
+
+/* ================== Footer ================== */
+footer {
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #444;
+  border-top: 1px solid #ddd;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.built-with {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* ================== Broker Logo ================== */
 .broker-logo-inline {
   height: 24px;
   width: auto;
   vertical-align: middle;
   margin: 0 6px 0 0;
-
-  /* New styles */
   padding: 3px 6px;
   border-radius: 6px;
   background: linear-gradient(135deg, #ffffff33, #ffffff11);
@@ -66,36 +150,101 @@ footer { background:#f8f8f8; text-align:center; padding:20px; font-size:0.9rem; 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Optional: Slight hover effect */
 .broker-logo-inline:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
-
-/* ------------------- Mobile Responsive ------------------- */
-@media (max-width:768px) {
-  .hero { flex-direction:column; padding:30px 15px; }
-  .hero img { max-width:200px; margin:15px 0; }
-  .hero-text { max-width:90%; margin:15px 0; text-align:center; }
-  .hero-text h1 { font-size:2rem; }
-  .hero-text p { font-size:1rem; }
-  .contact-form { padding:20px; }
-  .weather-container { justify-content:center; }
-  .day-card { width:45%; margin-bottom:15px; }
+/* Pulsing glow wrapper */
+.broker-logo-glow {
+  position: relative;
+  display: inline-block;
 }
 
-@media (max-width:480px) {
-  .day-card { width:90%; margin-bottom:15px; }
-  .weather-section h2 { font-size:1.5rem; }
-  .temp-high,.temp-low,.rain-chance { font-size:0.9rem; }
-  .weather-icon svg { width:40px; height:40px; }
-  .hero img { max-width:150px; }
-  .hero-text h1 { font-size:1.6rem; }
-  .hero-text p { font-size:0.95rem; }
-  .contact-form { padding:15px; }
-  .contact-form h2 { font-size:1.5rem; }
-  .contact-form p { font-size:0.9rem; }
-  .contact-form input,.contact-form textarea,.contact-form button { font-size:0.95rem; }
+.broker-logo-glow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  border-radius: 10px;
+  background: rgba(0, 123, 255, 0.3);
+  filter: blur(8px);
+  opacity: 0.6;
+  animation: pulseGlow 2s infinite ease-in-out;
+  z-index: -1;
+}
+
+@keyframes pulseGlow {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.5; }
+}
+
+/* ================== Weather Section ================== */
+.weather-section {
+  text-align: center;
+  background: #f5f8fc;
+  padding: 50px 20px;
+  border-top: 2px solid #007bff;
+}
+
+.weather-section h2 {
+  margin-bottom: 25px;
+  color: #003366;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+}
+
+.weather-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+
+.day-card {
+  background: white;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  width: 130px;
+  text-align: center;
+  font-size: 0.95rem;
+  border: 1px solid #e0e6ed;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.day-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.day-card h3 {
+  margin-bottom: 6px;
+  color: #007bff;
+  font-weight: 600;
+}
+
+.weather-icon {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+.temp-high {
+  color: #e63946;
+  font-weight: bold;
+}
+
+.temp-low {
+  color: #1d3557;
+}
+
+.rain-chance {
+  color: #457b9d;
+  font-style: italic;
+  font-size: 0.9rem;
 }
 
