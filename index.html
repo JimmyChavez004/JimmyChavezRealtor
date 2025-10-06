@@ -25,9 +25,12 @@
 </section>
 
   <div class="container">
-    <h2>About Me</h2>
-    <p>I’m Jimmy Chavez, proud to call Coeur d'Alene my home since 2016 and excited to help others find theirs!  
-    My approach is simple: honest guidance, local expertise, and personalized service that focuses on your needs first. With Future Realty, I’m backed by the tools, marketing, and support needed to make your real estate journey smooth and successful.</p>
+<section id="weather" class="weather-section">
+  <h2>7-Day Weather Forecast for Rathdrum, ID</h2>
+  <div id="weather-container" class="weather-container">
+    <p>Loading forecast...</p>
+  </div>
+</section>
 
     <h2>Connect with Me</h2>
     <p>Follow me on Facebook for real estate tips, listings, and market updates:</p>
@@ -49,6 +52,35 @@
     <p class="built-with">Built with ❤️ on GitHub Pages</p>
   </div>
 </footer>
+<script>
+  async function loadWeather() {
+    const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=47.8127&longitude=-116.8962&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=America/Los_Angeles");
+    const data = await response.json();
+
+    const days = data.daily.time;
+    const highs = data.daily.temperature_2m_max;
+    const lows = data.daily.temperature_2m_min;
+    const rain = data.daily.precipitation_probability_max;
+
+    const container = document.getElementById("weather-container");
+    container.innerHTML = ""; // clear placeholder
+
+    for (let i = 0; i < days.length; i++) {
+      const dayCard = document.createElement("div");
+      dayCard.classList.add("day-card");
+      const date = new Date(days[i]).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+      dayCard.innerHTML = `
+        <h3>${date}</h3>
+        <p>High: ${Math.round(highs[i])}°F</p>
+        <p>Low: ${Math.round(lows[i])}°F</p>
+        <p>Rain: ${rain[i]}%</p>
+      `;
+      container.appendChild(dayCard);
+    }
+  }
+
+  loadWeather();
+</script>
 
 </body>
 </html>
