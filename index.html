@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jimmy Chavez, Realtor® | Future Realty Idaho</title>
+  <title>Jimmy Chavez, Realtor® | Future Realty</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,8 +22,11 @@
   <section class="hero" id="about">
     <img src="Headshot.jpeg" alt="Jimmy Chavez">
     <div class="hero-text">
-      <h1>Welcome to JRC Properties</h1>
-      <p>Helping families find their dream home in Coeur d'Alene, Hayden, Rathdrum, and Post Falls.</p>
+      <h1>Welcome!</h1>
+      <p>
+        Helping families find their dream home in Coeur d'Alene, Hayden, Rathdrum, and Post Falls with 
+        <img src="future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline"> Future Realty.
+      </p>
     </div>
   </section>
 
@@ -31,7 +34,7 @@
   <section id="contact" class="contact-form">
     <h2>Contact Me</h2>
     <p>Send me a message and I’ll get back to you as soon as possible.</p>
-    <form action="https://formspree.io/f/mnqweabc" method="POST">
+    <form action="https://formspree.io/f/mvgwqwka" method="POST">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
       <textarea name="message" placeholder="Your Message" required></textarea>
@@ -49,21 +52,19 @@
   <!-- Footer -->
   <footer>
     <div class="footer-content">
-      <p>© 2025 Jimmy Chavez, Realtor® — Future Realty Idaho</p>
-      <img src="future-realty-idaho-logo.png" alt="Future Realty Idaho Logo" class="broker-logo">
+      <p>© 2025 Jimmy Chavez, Realtor® — 
+         <img src="future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline"> Future Realty
+      </p>
       <p class="built-with">Built with ❤️ on GitHub Pages</p>
     </div>
   </footer>
 
-  <!-- ------------------- Weather Script ------------------- -->
+  <!-- Weather Script -->
   <script>
     (async function() {
-      const LAT = 47.6777; // Coeur d’Alene
+      const LAT = 47.6777;
       const LON = -116.7805;
-
-      const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}` +
-                     `&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max` +
-                     `&timezone=America/Los_Angeles&temperature_unit=fahrenheit&forecast_days=7`;
+      const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=America/Los_Angeles&temperature_unit=fahrenheit&forecast_days=7`;
 
       const container = document.getElementById('weather-container');
       if (!container) return;
@@ -72,7 +73,6 @@
       try {
         const res = await fetch(apiUrl);
         const data = await res.json();
-
         const days = data?.daily?.time ?? [];
         const highs = data?.daily?.temperature_2m_max ?? [];
         const lows = data?.daily?.temperature_2m_min ?? [];
@@ -81,70 +81,24 @@
 
         container.innerHTML = '';
 
-        // Animated SVG icons
         const svgIcons = {
-          0: `<svg viewBox="0 0 64 64" class="sun-ray">
-                <circle cx="32" cy="32" r="12" fill="#FFD93B"/>
-                <g stroke="#FFD93B" stroke-width="2">
-                  <line x1="32" y1="0" x2="32" y2="12"/>
-                  <line x1="32" y1="52" x2="32" y2="64"/>
-                  <line x1="0" y1="32" x2="12" y2="32"/>
-                  <line x1="52" y1="32" x2="64" y2="32"/>
-                  <line x1="8" y1="8" x2="18" y2="18"/>
-                  <line x1="46" y1="46" x2="56" y2="56"/>
-                  <line x1="8" y1="56" x2="18" y2="46"/>
-                  <line x1="46" y1="18" x2="56" y2="8"/>
-                </g>
-              </svg>`,
-          1: `<svg viewBox="0 0 64 64">
-                <ellipse cx="36" cy="28" rx="14" ry="14" fill="#FFD93B"/>
-                <ellipse cx="28" cy="36" rx="14" ry="10" fill="#B0C4DE" class="cloud"/>
-              </svg>`,
-          2: `<svg viewBox="0 0 64 64">
-                <ellipse cx="32" cy="36" rx="20" ry="12" fill="#B0C4DE" class="cloud"/>
-              </svg>`,
-          3: `<svg viewBox="0 0 64 64">
-                <ellipse cx="32" cy="36" rx="22" ry="14" fill="#778899" class="cloud"/>
-              </svg>`,
-          45: `<svg viewBox="0 0 64 64">
-                <line x1="8" y1="32" x2="56" y2="32" stroke="#C0C0C0" stroke-width="3"/>
-                <line x1="8" y1="36" x2="56" y2="36" stroke="#C0C0C0" stroke-width="3"/>
-              </svg>`,
-          48: `<svg viewBox="0 0 64 64">
-                <line x1="8" y1="32" x2="56" y2="32" stroke="#C0C0C0" stroke-width="3"/>
-                <line x1="8" y1="36" x2="56" y2="36" stroke="#C0C0C0" stroke-width="3"/>
-              </svg>`,
-          51: `<svg viewBox="0 0 64 64">
-                <ellipse cx="32" cy="28" rx="18" ry="12" fill="#B0C4DE" class="cloud"/>
-                <line class="drop" x1="24" y1="40" x2="24" y2="50" stroke="#00AFFF" stroke-width="3"/>
-                <line class="drop" x1="32" y1="40" x2="32" y2="50" stroke="#00AFFF" stroke-width="3"/>
-                <line class="drop" x1="40" y1="40" x2="40" y2="50" stroke="#00AFFF" stroke-width="3"/>
-              </svg>`,
-          61: `<svg viewBox="0 0 64 64">
-                <ellipse cx="32" cy="28" rx="18" ry="12" fill="#778899" class="cloud"/>
-                <line class="drop" x1="24" y1="40" x2="24" y2="52" stroke="#007BFF" stroke-width="3"/>
-                <line class="drop" x1="32" y1="40" x2="32" y2="52" stroke="#007BFF" stroke-width="3"/>
-                <line class="drop" x1="40" y1="40" x2="40" y2="52" stroke="#007BFF" stroke-width="3"/>
-              </svg>`,
-          71: `<svg viewBox="0 0 64 64">
-                <ellipse cx="32" cy="28" rx="18" ry="12" fill="#778899" class="cloud"/>
-                <circle class="flake" cx="24" cy="42" r="2" fill="#FFF"/>
-                <circle class="flake" cx="32" cy="46" r="2" fill="#FFF"/>
-                <circle class="flake" cx="40" cy="42" r="2" fill="#FFF"/>
-              </svg>`,
-          95: `<svg viewBox="0 0 64 64">
-                <ellipse cx="32" cy="28" rx="18" ry="12" fill="#778899" class="cloud"/>
-                <polygon points="32,32 28,44 36,44" fill="#FF8C00" class="flash"/>
-              </svg>`
+          0: `<svg viewBox="0 0 64 64" class="sun-ray"><circle cx="32" cy="32" r="12" fill="#FFD93B"/><g stroke="#FFD93B" stroke-width="2"><line x1="32" y1="0" x2="32" y2="12"/><line x1="32" y1="52" x2="32" y2="64"/><line x1="0" y1="32" x2="12" y2="32"/><line x1="52" y1="32" x2="64" y2="32"/><line x1="8" y1="8" x2="18" y2="18"/><line x1="46" y1="46" x2="56" y2="56"/><line x1="8" y1="56" x2="18" y2="46"/><line x1="46" y1="18" x2="56" y2="8"/></g></svg>`,
+          1: `<svg viewBox="0 0 64 64"><ellipse cx="36" cy="28" rx="14" ry="14" fill="#FFD93B"/><ellipse cx="28" cy="36" rx="14" ry="10" fill="#B0C4DE" class="cloud"/></svg>`,
+          2: `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="36" rx="20" ry="12" fill="#B0C4DE" class="cloud"/></svg>`,
+          3: `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="36" rx="22" ry="14" fill="#778899" class="cloud"/></svg>`,
+          45: `<svg viewBox="0 0 64 64"><line x1="8" y1="32" x2="56" y2="32" stroke="#C0C0C0" stroke-width="3"/><line x1="8" y1="36" x2="56" y2="36" stroke="#C0C0C0" stroke-width="3"/></svg>`,
+          48: `<svg viewBox="0 0 64 64"><line x1="8" y1="32" x2="56" y2="32" stroke="#C0C0C0" stroke-width="3"/><line x1="8" y1="36" x2="56" y2="36" stroke="#C0C0C0" stroke-width="3"/></svg>`,
+          51: `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="28" rx="18" ry="12" fill="#B0C4DE" class="cloud"/><line class="drop" x1="24" y1="40" x2="24" y2="50" stroke="#00AFFF" stroke-width="3"/><line class="drop" x1="32" y1="40" x2="32" y2="50" stroke="#00AFFF" stroke-width="3"/><line class="drop" x1="40" y1="40" x2="40" y2="50" stroke="#00AFFF" stroke-width="3"/></svg>`,
+          61: `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="28" rx="18" ry="12" fill="#778899" class="cloud"/><line class="drop" x1="24" y1="40" x2="24" y2="52" stroke="#007BFF" stroke-width="3"/><line class="drop" x1="32" y1="40" x2="32" y2="52" stroke="#007BFF" stroke-width="3"/><line class="drop" x1="40" y1="40" x2="40" y2="52" stroke="#007BFF" stroke-width="3"/></svg>`,
+          71: `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="28" rx="18" ry="12" fill="#778899" class="cloud"/><circle class="flake" cx="24" cy="42" r="2" fill="#FFF"/><circle class="flake" cx="32" cy="46" r="2" fill="#FFF"/><circle class="flake" cx="40" cy="42" r="2" fill="#FFF"/></svg>`,
+          95: `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="28" rx="18" ry="12" fill="#778899" class="cloud"/><polygon points="32,32 28,44 36,44" fill="#FF8C00" class="flash"/></svg>`
         };
 
         for (let i = 0; i < days.length; i++) {
-          const dateStr = new Date(days[i]).toLocaleDateString('en-US', {
-            weekday: 'short', month: 'short', day: 'numeric'
-          });
-          const high = (highs[i] !== undefined) ? Math.round(highs[i]) + '°F' : '—';
-          const low  = (lows[i] !== undefined) ? Math.round(lows[i]) + '°F' : '—';
-          const rainPct = (rain[i] !== undefined) ? Math.round(rain[i]) + '%' : '—';
+          const dateStr = new Date(days[i]).toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' });
+          const high = highs[i] !== undefined ? Math.round(highs[i]) + '°F' : '—';
+          const low  = lows[i] !== undefined ? Math.round(lows[i]) + '°F' : '—';
+          const rainPct = rain[i] !== undefined ? Math.round(rain[i]) + '%' : '—';
           const icon = svgIcons[codes[i]] || svgIcons[0];
 
           const card = document.createElement('div');
@@ -158,7 +112,6 @@
           `;
           container.appendChild(card);
         }
-
       } catch (err) {
         console.error(err);
         container.innerHTML = '<p>Unable to load forecast. Please try again later.</p>';
@@ -168,4 +121,5 @@
 
 </body>
 </html>
+
 
