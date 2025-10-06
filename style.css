@@ -233,6 +233,13 @@ nav a:hover {
 }
 .weather-icon svg .flake { animation: fall-snow 2s linear infinite; }
 
+/* Lightning flash */
+@keyframes flash-lightning {
+  0%, 80%, 100% { opacity: 0; }
+  85%, 95% { opacity: 1; }
+}
+.weather-icon svg .flash { animation: flash-lightning 2s infinite; }
+
 /* -------------------- Footer -------------------- */
 footer {
   background: #0d1b2a;
