@@ -158,22 +158,42 @@ nav a:hover {
   max-width: 1000px;
 }
 
+/* Hover effect for day cards */
 .day-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 18px;
-  width: 140px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  border: 1px solid #e0e6ed;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
 }
 
-
 .day-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* Temperature hover effect */
+.temp-high:hover {
+  color: #e63946; /* Highlight red */
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.temp-low:hover {
+  color: #1d3557; /* Highlight dark blue */
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* Rain chance hover effect */
+.rain-chance:hover {
+  color: #007BFF;
+  font-style: normal;
+  font-weight: 600;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+/* Optional: make the icon scale slightly on hover */
+.weather-icon:hover svg {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
 }
 
 .day-card h3 {
