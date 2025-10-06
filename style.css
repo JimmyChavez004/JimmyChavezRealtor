@@ -1,274 +1,79 @@
 /* ------------------- General Styles ------------------- */
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #0a0a0a;
-  color: #f5f5f5;
-  line-height: 1.6;
-}
-
-/* Header + Navigation */
-header {
-  background: #0d1b2a;
-  padding: 20px;
-  text-align: center;
-}
-
-nav a {
-  color: #f5f5f5;
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav a:hover {
-  color: #1f6feb;
-}
+body { margin:0; font-family:Arial, Helvetica, sans-serif; background:#0a0a0a; color:#f5f5f5; line-height:1.6; }
+header { background:#0d1b2a; padding:20px; text-align:center; }
+nav a { color:#f5f5f5; margin:0 15px; text-decoration:none; font-weight:bold; }
+nav a:hover { color:#1f6feb; }
 
 /* Hero Section */
-.hero {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  background: #001f3f;
-  padding: 40px 20px;
-}
-
-.hero img {
-  max-width: 250px;
-  border-radius: 10px;
-  margin: 20px;
-}
-
-.hero-text {
-  max-width: 600px;
-  margin: 20px;
-}
-
-.hero-text h1 {
-  color: #ffffff;
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-}
-
-.hero-text p {
-  color: #dddddd;
-  font-size: 1.1rem;
-}
-
-/* Container */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.container h2 {
-  margin-top: 30px;
-  font-size: 1.8rem;
-  color: #1f6feb;
-}
-
-/* Footer */
-footer {
-  background-color: #f8f8f8;
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9rem;
-  color: #444;
-  border-top: 1px solid #ddd;
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.broker-logo {
-  height: 45px;
-  width: auto;
-  margin-top: 5px;
-}
-
-.built-with {
-  font-size: 0.8rem;
-  color: #777;
-}
+.hero { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; background:linear-gradient(135deg,#0d1b2a,#1b263b); padding:40px 20px; }
+.hero img { max-width:250px; border-radius:12px; margin:20px; }
+.hero-text { max-width:600px; margin:20px; }
+.hero-text h1 { font-size:2.5rem; margin-bottom:15px; }
+.hero-text p { font-size:1.1rem; color:#dcdcdc; }
+.broker-logo-inline { height:24px; width:auto; vertical-align:middle; margin:0 6px 0 0; }
 
 /* Contact Form */
-.contact-form {
-  max-width: 600px;
-  margin: 0 auto 40px;
-  padding: 25px;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
+.contact-form { max-width:600px; margin:0 auto 40px; padding:25px; background:#f9f9f9; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); color:#333; }
+.contact-form h2 { text-align:center; margin-bottom:10px; font-size:1.8rem; }
+.contact-form p { text-align:center; margin-bottom:20px; }
+.contact-form input, .contact-form textarea { width:100%; padding:10px 12px; margin-bottom:15px; border:1px solid #ccc; border-radius:8px; font-size:1rem; }
+.contact-form button { width:100%; padding:12px; background:#007bff; color:white; font-size:1.1rem; border:none; border-radius:8px; cursor:pointer; transition:background-color 0.3s ease; }
+.contact-form button:hover { background:#0056b3; }
+
+/* Weather Section */
+.weather-section { text-align:center; background:#f5f8fc; padding:50px 20px; border-top:2px solid #007bff; font-family:'Segoe UI',Arial,sans-serif; }
+.weather-section h2 { margin-bottom:25px; color:#003366; font-size:1.8rem; letter-spacing:0.5px; }
+.weather-container { display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start; gap:18px; }
+.day-card { background:white; border-radius:14px; padding:18px; box-shadow:0 4px 10px rgba(0,0,0,0.08); width:130px; text-align:center; font-size:0.95rem; border:1px solid #e0e6ed; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.day-card:hover { transform: translateY(-6px) scale(1.05); box-shadow:0 8px 16px rgba(0,0,0,0.15); }
+.day-card h3 { margin-bottom:6px; color:#007bff; font-weight:600; }
+.weather-icon { font-size:2rem; margin:10px 0; }
+.day-card:hover .weather-icon { animation:bounceIcon 0.6s ease forwards; }
+.temp-high { color:#e63946; font-weight:bold; }
+.temp-low { color:#1d3557; }
+.rain-chance { color:#457b9d; font-style:italic; font-size:0.9rem; }
+
+/* Weather Icon Animations */
+.sun-ray circle, .sun-ray line { transform-origin:32px 32px; animation:rotateSun 20s linear infinite; }
+@keyframes rotateSun { 0%{transform:rotate(0deg);}100%{transform:rotate(360deg);} }
+.cloud { animation:driftCloud 6s ease-in-out infinite alternate; }
+@keyframes driftCloud { 0%{transform:translateX(0);}100%{transform:translateX(5px);} }
+.drop { animation:fallDrop 1s linear infinite; }
+@keyframes fallDrop {0%{transform:translateY(0);opacity:0;}50%{opacity:1;}100%{transform:translateY(10px);opacity:0;} }
+.flake { animation:fallFlake 2s linear infinite; }
+@keyframes fallFlake {0%{transform:translateY(0);opacity:0;}50%{opacity:1;}100%{transform:translateY(10px);opacity:0;} }
+.flash { animation:flashLight 1s linear infinite; }
+@keyframes flashLight {0%,90%{opacity:0;}91%,100%{opacity:1;} }
+@keyframes bounceIcon { 0%{transform:translateY(0);}25%{transform:translateY(-8px);}50%{transform:translateY(0);}75%{transform:translateY(-4px);}100%{transform:translateY(0);} }
+
+/* Footer */
+footer { background:#f8f8f8; text-align:center; padding:20px; font-size:0.9rem; color:#444; border-top:1px solid #ddd; }
+.footer-content { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.built-with { font-size:0.8rem; color:#777; }
+
+/* ------------------- Mobile Responsive ------------------- */
+@media (max-width:768px) {
+  .hero { flex-direction:column; padding:30px 15px; }
+  .hero img { max-width:200px; margin:15px 0; }
+  .hero-text { max-width:90%; margin:15px 0; text-align:center; }
+  .hero-text h1 { font-size:2rem; }
+  .hero-text p { font-size:1rem; }
+  .contact-form { padding:20px; }
+  .weather-container { justify-content:center; }
+  .day-card { width:45%; margin-bottom:15px; }
 }
 
-.contact-form h2 {
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 1.8rem;
-  color: #333;
+@media (max-width:480px) {
+  .day-card { width:90%; margin-bottom:15px; }
+  .weather-section h2 { font-size:1.5rem; }
+  .temp-high,.temp-low,.rain-chance { font-size:0.9rem; }
+  .weather-icon svg { width:40px; height:40px; }
+  .hero img { max-width:150px; }
+  .hero-text h1 { font-size:1.6rem; }
+  .hero-text p { font-size:0.95rem; }
+  .contact-form { padding:15px; }
+  .contact-form h2 { font-size:1.5rem; }
+  .contact-form p { font-size:0.9rem; }
+  .contact-form input,.contact-form textarea,.contact-form button { font-size:0.95rem; }
 }
 
-.contact-form p {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #555;
-}
-
-.contact-form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #333;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.contact-form button {
-  width: 100%;
-  padding: 12px;
-  background-color: #007bff;
-  color: white;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.contact-form button:hover {
-  background-color: #0056b3;
-}
-
-/* ------------------- Weather Section ------------------- */
-.weather-section {
-  text-align: center;
-  background: #f5f8fc;
-  padding: 50px 20px;
-  border-top: 2px solid #007bff;
-  font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-.weather-section h2 {
-  margin-bottom: 25px;
-  color: #003366;
-  font-size: 1.8rem;
-  letter-spacing: 0.5px;
-}
-
-.weather-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px;
-  margin: 0 auto;
-  max-width: 1000px;
-}
-
-.day-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 18px;
-  width: 140px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  border: 1px solid #e0e6ed;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.day-card:hover {
-  transform: translateY(-6px) scale(1.05);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-}
-
-/* Weather icon scaling */
-.weather-icon {
-  font-size: 2rem;
-  margin: 10px 0;
-}
-
-.weather-icon svg {
-  width: 50px;
-  height: 50px;
-  transition: transform 0.3s ease;
-}
-
-.weather-icon:hover svg {
-  transform: scale(1.1);
-}
-
-/* Temperature and rain hover effects */
-.temp-high:hover {
-  color: #e63946;
-  font-weight: bold;
-}
-
-.temp-low:hover {
-  color: #1d3557;
-  font-weight: bold;
-}
-
-.rain-chance:hover {
-  color: #007BFF;
-  font-style: normal;
-  font-weight: 600;
-}
-
-/* ------------------- Animated SVG Effects ------------------- */
-/* Sun rotation */
-@keyframes rotate-sun {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-.sun-ray { animation: rotate-sun 20s linear infinite; transform-origin: 50% 50%; }
-
-/* Cloud sway */
-@keyframes sway-cloud {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(4px); }
-}
-.cloud { animation: sway-cloud 6s ease-in-out infinite; }
-
-/* Rain drop falling */
-@keyframes fall-drop {
-  0% { transform: translateY(-10px); opacity: 0; }
-  30% { opacity: 1; }
-  100% { transform: translateY(20px); opacity: 0; }
-}
-.drop { animation: fall-drop 1s linear infinite; }
-
-/* Snowflake falling */
-@keyframes fall-snow {
-  0% { transform: translateY(-10px); opacity: 0; }
-  30% { opacity: 1; }
-  100% { transform: translateY(20px); opacity: 0; }
-}
-.flake { animation: fall-snow 2s linear infinite; }
-
-/* Lightning flash */
-@keyframes flash-lightning {
-  0%, 80%, 100% { opacity: 0; }
-  85%, 95% { opacity: 1; }
-}
-.flash { animation: flash-lightning 2s infinite; }
-
-/* Optional hover speed-up for sun/cloud */
-.day-card:hover .sun-ray { animation-duration: 10s; }
-.day-card:hover .cloud { animation-duration: 3s; }
