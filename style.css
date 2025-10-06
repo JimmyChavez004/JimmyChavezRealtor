@@ -143,29 +143,33 @@ nav a:hover {
   letter-spacing: 0.5px;
 }
 
+.weather-icon svg {
+  width: 50px;
+  height: 50px;
+  margin: 8px 0;
+}
+
 .weather-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* center boxes horizontally */
+  justify-content: center;
   gap: 18px;
   margin: 0 auto;
-  max-width: 1000px; /* optional, limits total width */
+  max-width: 1000px;
 }
 
 .day-card {
-  background: white;
-  border-radius: 14px;
-  padding: 18px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  width: 130px;
-  text-align: center;
-  font-size: 0.95rem;
-  border: 1px solid #e0e6ed;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
-  align-items: center; /* ensures icons and text are centered */
+  align-items: center;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+  width: 140px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  border: 1px solid #e0e6ed;
 }
+
 
 .day-card:hover {
   transform: translateY(-4px);
@@ -176,12 +180,6 @@ nav a:hover {
   margin-bottom: 6px;
   color: #007bff;
   font-weight: 600;
-}
-
-.weather-icon svg {
-  width: 36px;
-  height: 36px;
-  margin: 10px 0;
 }
 
 .temp-high {
