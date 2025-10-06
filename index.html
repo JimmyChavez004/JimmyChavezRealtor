@@ -54,28 +54,53 @@
 </footer>
 <script>
   async function loadWeather() {
-    // Coeur d'Alene, ID coordinates
-    const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=47.6777&longitude=-116.7805&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=America/Los_Angeles");
+    // Coeur d’Alene, ID coordinates
+    const response = await fetch(
+      "https://api.open-meteo.com/v1/forecast?latitude=47.6777&longitude=-116.7805&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=America/Los_Angeles"
+    );
     const data = await response.json();
 
     const days = data.daily.time;
     const highs = data.daily.temperature_2m_max;
     const lows = data.daily.temperature_2m_min;
     const rain = data.daily.precipitation_probability_max;
+    const codes = data.daily.weathercode;
 
     const container = document.getElementById("weather-container");
-    container.innerHTML = ""; // clear placeholder
+    container.innerHTML = "";
+
+    // Mapping Open-Meteo weather codes to simple emojis
+    const icons = {
+      0: "☀️",   // Clear sky
+      1: "🌤️",  // Mainly clear
+      2: "⛅",   // Partly cloudy
+      3: "☁️",   // Overcast
+      45: "🌫️",  // Fog
+      48: "🌫️",  // Depositing rime fog
+      51: "🌦️",  // Light drizzle
+      61: "🌧️",  // Rain
+      63: "🌧️",  // Moderate rain
+      65: "🌧️",  // Heavy rain
+      71: "🌨️",  // Snow
+      73: "🌨️",
+      75: "❄️",
+      95: "⛈️",  // Thunderstorm
+      99: "⛈️"
+    };
 
     for (let i = 0; i < days.length; i++) {
-      const dayCard = document.createElement("div");
-      dayCard.classList.add("day-card");
       const date = new Date(days[i]).toLocaleDateString("en-US", {
         weekday: "short",
         month: "short",
         day: "numeric"
       });
+
+      const icon = icons[codes[i]] || "🌡️";
+      const dayCard = document.createElement("div");
+      dayCard.classList.add("day-card");
       dayCard.innerHTML = `
         <h3>${date}</h3>
+        <div class="weather-icon">${icon}</div>
         <p>High: ${Math.round(highs[i])}°F</p>
         <p>Low: ${Math.round(lows[i])}°F</p>
         <p>Rain: ${rain[i]}%</p>
