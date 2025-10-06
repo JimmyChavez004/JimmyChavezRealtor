@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Contact - Jimmy Chavez</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Jimmy Chavez, REALTOR® | Future Realty Idaho</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Contact Jimmy Chavez, REALTOR® with Future Realty Idaho. Serving Coeur d’Alene, Hayden, Rathdrum, and North Idaho for all your real estate needs." />
 </head>
+
 <body>
+  <!-- Header -->
   <header>
+    <h1>Jimmy Chavez, REALTOR®</h1>
+    <p>Future Realty Idaho</p>
     <nav>
       <a href="index.html">Home</a>
-      <a href="listings.html">Listings</a>
-      <a href="blog.html">Blog</a>
       <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html" style="color: #1f6feb;">Contact</a>
     </nav>
   </header>
 
-  <div class="container">
-    <h1>Contact Jimmy Chavez</h1>
-
-    <div class="card">
-      <p><strong>Phone:</strong> 805-868-6369</p>
-      <p><strong>Email:</strong> <a href="mailto:jimmy@futurerealtyidaho.com">jimmy@futurerealtyidaho.com</a></p>
-    </div>
-
-    <div class="card">
-      <h2>Send a Message</h2>
-      
-      <form action="https://formspree.io/f/mvgwqwka" method="POST" class="contact-form">
-  <h2>Contact Me</h2>
-  <p>Have questions or want to talk about buying or selling a home? Send me a message!</p>
-
-  <label for="name">Your Name</label>
-  <input type="text" id="name" name="name" placeholder="Your Name" required>
-
-  <label for="email">Your Email</label>
-  <input type="email" id="email" name="email" placeholder="Your Email" required>
-
-  <label for="message">Your Message</label>
-  <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-
-  <input type="hidden" name="_next" value="thankyou.html">
-
-  <button type="submit">Send Message</button>
-</form>
-
-    </div>
-  </div>
-
-  <footer>
-  <div class="footer-content">
-    <p>
-      © 2025 <strong>Jimmy Chavez, Realtor&reg;</strong> — Licensed with 
-      <strong>Future Realty</strong>
+  <!-- Contact Section -->
+  <section class="hero" style="flex-direction: column; text-align: center;">
+    <h1>Contact Me</h1>
+    <p style="max-width: 700px; color: #dcdcdc;">
+      I’d love to help you with your real estate goals.  
+      Whether you’re buying, selling, or just exploring your options in North Idaho, feel free to reach out below.
     </p>
-    <img src="images/future-realty-idaho-logo.png" 
-         alt="Future Realty Idaho Logo" 
-         class="broker-logo">
-    <p class="built-with">Built with ❤️ on GitHub Pages</p>
+  </section>
+
+  <!-- Contact Form -->
+  <div class="container" style="max-width: 600px;">
+    <form action="https://formspree.io/f/mvgwqwka" method="POST" class="contact-form">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+      <label for="message">Your Message</label>
+      <textarea id="message" name="message" placeholder="Your Message" rows="6" required></textarea>
+
+      <input type="hidden" name="_next" value="thankyou.html">
+      <button type="submit">Send Message</button>
+    </form>
   </div>
-</footer>
+
+  <!-- Optional Contact Info -->
+  <div class="container" style="text-align: center;">
+    <p>You can also reach me directly:</p>
+    <p><strong>Email:</strong> <a href="mailto:jimmy@futurerealtyidaho.com">jimmy@futurerealtyidaho.com</a></p>
+    <p><strong>Phone:</strong> (805)868-6369</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>© 2025 Jimmy Chavez, REALTOR® — Future Realty Idaho</p>
+      <img src="images/future-realty-idaho-logo.png" alt="Future Realty Idaho Logo" class="broker-logo" />
+      <p class="built-with">Built with ❤️ using GitHub Pages</p>
+    </div>
+  </footer>
 </body>
 </html>
 
