@@ -193,6 +193,12 @@ nav a:hover {
   font-size: 0.9rem;
 }
 
+.weather-updated {
+  font-size: 0.85rem;
+  color: #475569; /* or a color matching your theme */
+  margin-bottom: 12px;
+}
+
 /* -------------------- Footer -------------------- */
 footer {
   background: #0d1b2a;
