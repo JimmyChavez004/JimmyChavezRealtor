@@ -146,8 +146,10 @@ nav a:hover {
 .weather-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center; /* center boxes horizontally */
   gap: 18px;
+  margin: 0 auto;
+  max-width: 1000px; /* optional, limits total width */
 }
 
 .day-card {
@@ -160,6 +162,9 @@ nav a:hover {
   font-size: 0.95rem;
   border: 1px solid #e0e6ed;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ensures icons and text are centered */
 }
 
 .day-card:hover {
@@ -173,8 +178,9 @@ nav a:hover {
   font-weight: 600;
 }
 
-.weather-icon {
-  font-size: 2rem;
+.weather-icon svg {
+  width: 36px;
+  height: 36px;
   margin: 10px 0;
 }
 
