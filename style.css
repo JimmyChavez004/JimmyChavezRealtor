@@ -1,4 +1,4 @@
-/* ================== General Styles ================== */
+/* ================== General Styles & Variables ================== */
 :root {
   --accent: #007bff;
   --bg: #0a0a0a;
@@ -28,7 +28,7 @@ a:hover {
   color: var(--accent);
 }
 
-/* ================== Header + Navigation ================== */
+/* ================== Header & Navigation ================== */
 header {
   background: #0d1b2a;
   padding: 20px;
@@ -96,7 +96,7 @@ nav a {
   transform: scale(1.05);
 }
 
-/* Logo with White Background */
+/* ================== Broker Logo Effects ================== */
 .logo-white-bg {
   background-color: #fff;
   padding: 4px 8px;
@@ -108,6 +108,208 @@ nav a {
   height: 30px;
   vertical-align: middle;
 }
+
+.broker-logo-glow {
+  position: relative;
+  display: inline-block;
+}
+
+.broker-logo-glow::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 140%;
+  border-radius: 14px;
+  background: rgba(0,123,255,0.24);
+  filter: blur(18px);
+  opacity: 0.6;
+  animation: pulseGlow 2.5s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes pulseGlow {
+  0%   { transform: translate(-50%, -50%) scale(0.94); opacity: 0.45; }
+  50%  { transform: translate(-50%, -50%) scale(1.08); opacity: 0.75; }
+  100% { transform: translate(-50%, -50%) scale(0.94); opacity: 0.45; }
+}
+
+.broker-logo-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #fff;
+  padding: 6px 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  margin-top: 16px;
+}
+
+.broker-logo-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130%;
+  height: 130%;
+  border-radius: 12px;
+  background: radial-gradient(circle, rgba(0,123,255,0.35) 0%, rgba(28,42,74,0.15) 70%);
+  filter: blur(14px);
+  opacity: 0.55;
+  animation: pulseGlowCompact 2.5s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes pulseGlowCompact {
+  0% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.4; }
+  50% { transform: translate(-50%, -50%) scale(1.04); opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.4; }
+}
+
+.broker-logo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.28);
+}
+
+/* ================== Weather Section ================== */
+.weather-section {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  padding: 60px 20px;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.4), rgba(19,37,54,0.6));
+  overflow: hidden;
+  border-top: 3px solid var(--accent);
+}
+
+.weather-section h2 {
+  margin-bottom: 30px;
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: #00bfff;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.forecast-day {
+  background: rgba(0, 123, 255, 0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 16px;
+  padding: 18px 12px;
+  width: 100%;
+  max-width: 160px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.5s ease;
+  opacity: 0;
+  position: relative;
+}
+
+.forecast-day.visible {
+  opacity: 1;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  0% { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ================== Listings Page ================== */
+.listings-grid {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f5f5f5;
+  color: #111;
+}
+
+.listings-grid .grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.listing-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  width: 280px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  transition: transform .2s ease;
+}
+
+.listing-card:hover {
+  transform: translateY(-4px);
+}
+
+.listing-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.listing-card .price {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.btn {
+  display:inline-block;
+  background: var(--accent);
+  color:#fff;
+  padding:8px 12px;
+  border-radius:6px;
+  text-decoration:none;
+  margin-top:10px;
+}
+
+.btn:hover {
+  background:#0056b3;
+}
+
+/* ================== Blog Page ================== */
+.blog-section {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fafafa;
+  color: #111;
+}
+
+.blog-grid {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:24px;
+}
+
+.blog-card {
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  width:280px;
+  box-shadow:0 6px 16px rgba(0,0,0,0.1);
+  text-align:left;
+}
+
+.blog-card h3 { color: var(--accent); }
+.blog-card a { color: var(--accent); text-decoration:none; }
+.blog-card a:hover { text-decoration: underline; }
 
 /* ================== Contact Form ================== */
 .contact-form {
@@ -179,268 +381,6 @@ footer {
   color: var(--muted);
 }
 
-/* ================== Broker Logo Effects ================== */
-.broker-logo-glow {
-  position: relative;
-  display: inline-block;
-}
-
-.broker-logo-glow::after {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 140%;
-  height: 140%;
-  border-radius: 14px;
-  background: rgba(0,123,255,0.24);
-  filter: blur(18px);
-  opacity: 0.6;
-  animation: pulseGlow 2.5s ease-in-out infinite;
-  z-index: -1;
-}
-
-@keyframes pulseGlow {
-  0%   { transform: translate(-50%, -50%) scale(0.94); opacity: 0.45; }
-  50%  { transform: translate(-50%, -50%) scale(1.08); opacity: 0.75; }
-  100% { transform: translate(-50%, -50%) scale(0.94); opacity: 0.45; }
-}
-/* Broker logo card with subtle glow */
-.broker-logo-card {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #fff;
-  padding: 8px 12px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  position: relative; /* for the glow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-top: 20px;
-}
-
-.broker-logo-card::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 140%;
-  height: 140%;
-  border-radius: 16px;
-  background: rgba(0, 123, 255, 0.35);
-  filter: blur(18px);
-  opacity: 0.6;
-  animation: pulseGlow 2.5s ease-in-out infinite;
-  z-index: -1;
-}
-
-@keyframes pulseGlow {
-  0% { transform: translate(-50%, -50%) scale(0.94); opacity: 0.45; }
-  50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.75; }
-  100% { transform: translate(-50%, -50%) scale(0.94); opacity: 0.45; }
-}
-
-.broker-logo-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.32);
-}
-/* Broker logo card with hero-matching glow */
-.broker-logo-card {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #fff;
-  padding: 8px 12px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  position: relative; /* for the glow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-top: 20px;
-}
-
-.broker-logo-card::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 140%;
-  height: 140%;
-  border-radius: 16px;
-  background: radial-gradient(circle, rgba(0,123,255,0.4) 0%, rgba(28,42,74,0.2) 70%);
-  filter: blur(18px);
-  opacity: 0.6;
-  animation: pulseGlow 2.5s ease-in-out infinite;
-  z-index: -1;
-}
-
-@keyframes pulseGlow {
-  0% { transform: translate(-50%, -50%) scale(0.94); opacity: 0.45; }
-  50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.75; }
-  100% { transform: translate(-50%, -50%) scale(0.94); opacity: 0.45; }
-}
-
-.broker-logo-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.32);
-}
-/* Mobile-friendly broker logo card */
-.broker-logo-card {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background-color: #fff;
-  padding: 6px 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.22);
-  position: relative; /* for glow */
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  margin-top: 16px;
-}
-
-.broker-logo-card::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 130%;
-  height: 130%;
-  border-radius: 12px;
-  background: radial-gradient(circle, rgba(0,123,255,0.35) 0%, rgba(28,42,74,0.15) 70%);
-  filter: blur(14px);
-  opacity: 0.55;
-  animation: pulseGlowCompact 2.5s ease-in-out infinite;
-  z-index: -1;
-}
-
-@keyframes pulseGlowCompact {
-  0% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.4; }
-  50% { transform: translate(-50%, -50%) scale(1.04); opacity: 0.7; }
-  100% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.4; }
-}
-
-.broker-logo-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.28);
-}
-
-/* Responsive tweaks for smaller screens */
-@media (max-width: 480px) {
-  .broker-logo-card {
-    padding: 4px 8px;
-    gap: 4px;
-    border-radius: 8px;
-  }
-
-  .broker-logo-card::after {
-    width: 120%;
-    height: 120%;
-    filter: blur(12px);
-  }
-}
-
-/* ================== Weather Section ================== */
-.weather-section {
-  text-align: center;
-  background: #f5f8fc;
-  padding: 50px 20px;
-  border-top: 3px solid var(--accent);
-}
-
-.weather-section h2 {
-  margin-bottom: 25px;
-  color: #003366;
-  font-size: 1.8rem;
-}
-
-.weather-container,
-.forecast-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.day-card,
-.forecast-day {
-  background: #2c3e50; /* Solid dark blue */
-  border-radius: 12px;
-  padding: 15px;
-  text-align: center;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-
-.day-card:hover,
-.forecast-day:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-}
-
-.day-card h3,
-.forecast-day h3 {
-  margin-bottom: 10px;
-  font-size: 1rem;
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.weather-icon {
-  margin: 10px 0;
-  font-size: 2rem;
-}
-
-.temp-high { color: #e63946; font-weight: bold; }
-.temp-low { color: #1d3557; margin: 6px 0; }
-.rain-chance { color: #457b9d; font-style: italic; font-size: 0.9rem; }
-
-/* ================== Animated Weather Elements ================== */
-/* Sun, clouds, rain, snow, thunder, fog - kept concise for brevity */
-
-.anim-icon { width: 92px; height: 72px; margin: 6px auto; position: relative; overflow: visible; }
-.sun-core { border-radius: 50%; box-shadow: 0 6px 24px rgba(255,200,60,0.28); }
-.sun-ray { animation: spinRays 8s linear infinite; }
-@keyframes spinRays { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-.cloud { animation: floatCloud 6s ease-in-out infinite alternate; }
-@keyframes floatCloud { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
-
-.drop { animation: rainFall 1s infinite linear; }
-@keyframes rainFall { 0% { transform: translateY(0); opacity:0.5; } 50% { transform: translateY(4px); opacity:1; } 100% { transform: translateY(0); opacity:0.5; } }
-
-.flake { animation: snowFall 2s infinite linear; }
-@keyframes snowFall { 0% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(6px) rotate(45deg); } 100% { transform: translateY(0) rotate(0deg); } }
-
-.bolt, .bolt2 { animation: boltFlash 2s infinite; }
-@keyframes boltFlash { 0%,50%,100%{opacity:0} 8%,58%{opacity:1} 18%,66%{opacity:0} }
-
-.fog-lines span { animation: fogMove 8s linear infinite; }
-@keyframes fogMove { 0% { transform: translateX(-30px); opacity:.25 } 50% { transform: translateX(10px); opacity:.45 } 100% { transform: translateX(-30px); opacity:.25 } }
-
-/* ================== Listings Page ================== */
-.listings-grid { text-align: center; padding: 40px 20px; background-color: #f5f5f5; color: #111; }
-.listings-grid .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
-.listing-card { background: white; border-radius: 12px; padding: 15px; width: 280px; box-shadow: 0 6px 16px rgba(0,0,0,0.1); transition: transform .2s ease; }
-.listing-card:hover { transform: translateY(-4px); }
-.listing-card img { width: 100%; border-radius: 8px; margin-bottom: 12px; }
-.listing-card .price { color: var(--accent); font-weight: bold; }
-.btn { display:inline-block; background: var(--accent); color:#fff; padding:8px 12px; border-radius:6px; text-decoration:none; margin-top:10px; }
-.btn:hover { background:#0056b3; }
-
-/* ================== Blog Page ================== */
-.blog-section { text-align: center; padding: 40px 20px; background: #fafafa; color: #111; }
-.blog-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:24px; }
-.blog-card { background:white; padding:20px; border-radius:12px; width:280px; box-shadow:0 6px 16px rgba(0,0,0,0.1); text-align:left; }
-.blog-card h3 { color: var(--accent); }
-.blog-card a { color: var(--accent); text-decoration:none; }
-.blog-card a:hover { text-decoration: underline; }
-
 /* ================== Responsive ================== */
 @media (max-width:900px){
   .hero { flex-direction: column-reverse; text-align: center; gap: 20px; }
@@ -449,13 +389,12 @@ footer {
   .hero-left p { font-size: 1rem; }
   .hero-right img { max-width: 200px; }
   .broker-logo-inline { height: 48px; }
-  .day-card { width: 140px; }
-  .anim-icon { width: 84px; height: 66px; }
+  .forecast-day { width: 140px; }
 }
+
 @media (max-width:480px){
   .hero { padding: 22px; }
   .contact-form { padding: 14px; }
   .broker-logo-inline { height: 44px; }
-  .day-card { width: 92%; }
-  .anim-icon { width: 80px; height: 60px; }
+  .forecast-day { width: 92%; }
 }
