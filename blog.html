@@ -1,45 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Real Estate Blog | Jimmy Chavez Realtor®</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Read the latest real estate tips, market insights, and news from Jimmy Chavez, Realtor® serving North Idaho.">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* --- Hero Section --- */
+    .blog-hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #0d1b2a, #1b263b);
+      color: #f5f5f5;
+    }
+    .blog-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .blog-hero p {
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #dcdcdc;
+    }
+
+    /* --- Blog Grid --- */
+    .blog-section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .blog-card {
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+    }
+    .blog-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .blog-card-content {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .blog-card h3 {
+      margin: 0 0 0.5rem;
+      color: #004080;
+    }
+    .blog-card p {
+      margin: 0 0 1rem;
+      color: #333;
+      font-size: 0.95rem;
+    }
+    .blog-card a {
+      display: inline-block;
+      color: #007bff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .blog-card a:hover {
+      color: #004080;
+    }
+
+    @media(max-width:600px){
+      .blog-hero h1 { font-size: 2rem; }
+      .blog-card img { height: 150px; }
+    }
+  </style>
 </head>
 <body>
- <header>
+  <!-- Header -->
+  <header>
     <h1>Jimmy Chavez, Realtor® Blog</h1>
     <nav>
-  <a href="index.html">Home</a>
-  <a href="listings.html">Listings</a>
-  <a href="blog.html">Blog</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</nav>
+      <a href="index.html">Home</a>
+      <a href="listings.html">Listings</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
+
+  <!-- Hero Section -->
+  <section class="blog-hero">
+    <h1>Real Estate Insights & Tips</h1>
+    <p>Stay informed with the latest market news, home selling tips, and community highlights from North Idaho.</p>
+  </section>
+
+  <!-- Blog Grid -->
   <section class="blog-section">
-    <h2>Latest Posts</h2>
     <div class="blog-grid">
+      <!-- Blog Card 1 -->
       <article class="blog-card">
-        <h3>How to Prepare Your Home for Sale</h3>
-        <p>Simple steps to increase your home’s appeal before listing it on the market.</p>
-        <a href="#">Read More →</a>
+        <img src="images/sample-blog-1.jpg" alt="Prepare Your Home for Sale">
+        <div class="blog-card-content">
+          <h3>How to Prepare Your Home for Sale</h3>
+          <p>Simple steps to increase your home’s appeal before listing it on the market.</p>
+          <a href="#">Read More →</a>
+        </div>
       </article>
 
+      <!-- Blog Card 2 -->
       <article class="blog-card">
-        <h3>Why Coeur d'Alene Is Idaho’s Hidden Gem</h3>
-        <p>Discover what makes our area one of the best places to live in the Pacific Northwest.</p>
-        <a href="#">Read More →</a>
+        <img src="images/sample-blog-2.jpg" alt="Why Coeur d'Alene is Idaho’s Hidden Gem">
+        <div class="blog-card-content">
+          <h3>Why Coeur d'Alene Is Idaho’s Hidden Gem</h3>
+          <p>Discover what makes our area one of the best places to live in the Pacific Northwest.</p>
+          <a href="#">Read More →</a>
+        </div>
       </article>
+
+      <!-- Add more blog cards here -->
     </div>
   </section>
 
-  <footer>
+  <!-- Footer -->
+  <footer role="contentinfo">
     <div class="footer-content">
       <p>© 2025 Jimmy Chavez, Realtor® — 
-         <span class="broker-logo-glow">
-           <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline">
-         </span> Future Realty
+         <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline"> Future Realty
       </p>
       <p class="built-with">Built with ❤️ on GitHub Pages</p>
     </div>
