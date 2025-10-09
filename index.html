@@ -151,59 +151,80 @@
       speed: 0.75,
     });
 
-    // --- Weather Forecast Script ---
-    const API_KEY = "50832881bb772678b299d79ab211d9e6";
+    // --- Open-Meteo Forecast Script ---
     const LAT = 47.6777;
     const LON = -116.7805;
     const forecastGrid = document.getElementById("forecast-grid");
 
-    const weatherIconMap = {
-      Clear: "wi-day-sunny",
-      Clouds: "wi-cloudy",
-      Rain: "wi-rain",
-      Snow: "wi-snow",
-      Thunderstorm: "wi-thunderstorm",
-      Drizzle: "wi-sprinkle",
-      Mist: "wi-fog",
-      Fog: "wi-fog",
-      Haze: "wi-day-haze"
+    const weatherCodeMap = {
+      0: "wi-day-sunny",
+      1: "wi-day-sunny-overcast",
+      2: "wi-day-cloudy",
+      3: "wi-cloudy",
+      45: "wi-fog",
+      48: "wi-fog",
+      51: "wi-sprinkle",
+      53: "wi-sprinkle",
+      55: "wi-sprinkle",
+      56: "wi-sleet",
+      57: "wi-sleet",
+      61: "wi-rain",
+      63: "wi-rain",
+      65: "wi-rain",
+      66: "wi-sleet",
+      67: "wi-sleet",
+      71: "wi-snow",
+      73: "wi-snow",
+      75: "wi-snow",
+      77: "wi-snow",
+      80: "wi-showers",
+      81: "wi-showers",
+      82: "wi-showers",
+      85: "wi-snow",
+      86: "wi-snow",
+      95: "wi-thunderstorm",
+      96: "wi-thunderstorm",
+      99: "wi-thunderstorm",
     };
+
+    function precipitationToPercent(mm) {
+      return Math.min(Math.round((mm / 20) * 100), 100);
+    }
 
     async function fetchWeather() {
       forecastGrid.innerHTML = "<p>Loading forecast…</p>";
       try {
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${LAT}&lon=${LON}&exclude=minutely,hourly,alerts&units=imperial&appid=${API_KEY}`);
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode&timezone=America/Denver&temperature_unit=fahrenheit`);
         if (!res.ok) throw new Error("API request failed");
         const data = await res.json();
-        if (!data.daily || data.daily.length === 0) throw new Error("No daily forecast data");
-        renderForecast(data.daily.slice(0, 7));
+        if (!data.daily || !data.daily.time || data.daily.time.length === 0) throw new Error("No daily forecast data");
+        renderForecast(data.daily);
       } catch (err) {
         console.error(err);
         renderPlaceholderForecast();
       }
     }
 
-    function renderForecast(days) {
+    function renderForecast(daily) {
       forecastGrid.innerHTML = "";
-      days.forEach(day => {
-        const dayName = day.dt ? new Date(day.dt * 1000).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }) : "Weather date unavailable";
-        const iconClass = (day.weather && day.weather[0] && weatherIconMap[day.weather[0].main]) || "wi-cloudy";
-        const description = (day.weather && day.weather[0] && day.weather[0].main) || "Unavailable";
-        const tempMax = day.temp ? Math.round(day.temp.max) : "--";
-        const tempMin = day.temp ? Math.round(day.temp.min) : "--";
-        const pop = day.pop != null ? Math.round(day.pop * 100) : "--";
+      for (let i = 0; i < daily.time.length; i++) {
+        const date = new Date(daily.time[i]);
+        const dayName = date ? date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }) : "Weather date unavailable";
+        const iconClass = weatherCodeMap[daily.weathercode[i]] || "wi-cloudy";
+        const tempMax = daily.temperature_2m_max[i] != null ? Math.round(daily.temperature_2m_max[i]) : "--";
+        const tempMin = daily.temperature_2m_min[i] != null ? Math.round(daily.temperature_2m_min[i]) : "--";
+        const rainPercent = daily.precipitation_sum[i] != null ? precipitationToPercent(daily.precipitation_sum[i]) : "--";
 
         const card = document.createElement("div");
         card.className = "forecast-day";
         card.innerHTML = `
           <h3>${dayName}</h3>
           <i class="wi ${iconClass} weather-icon"></i>
-          <p class="description">${description}</p>
           <p class="temp"><span class="temp-high">${tempMax}°</span> / <span class="temp-low">${tempMin}°</span></p>
-          <p class="rain-chance">Precip: ${pop}%</p>
+          <p class="rain-chance">Chance of rain: ${rainPercent}%</p>
         `;
         forecastGrid.appendChild(card);
-      });
+      }
     }
 
     function renderPlaceholderForecast() {
@@ -216,7 +237,7 @@
           <i class="wi wi-cloudy weather-icon"></i>
           <p class="description">Data unavailable</p>
           <p class="temp"><span class="temp-high">--°</span> / <span class="temp-low">--°</span></p>
-          <p class="rain-chance">Precip: --%</p>
+          <p class="rain-chance">Chance of rain: --%</p>
         `;
         forecastGrid.appendChild(card);
       }
@@ -227,7 +248,3 @@
 
 </body>
 </html>
-
-
-
-
