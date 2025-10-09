@@ -35,10 +35,15 @@
   </section>
 
   <!-- Weather Section -->
-  <section id="weather" class="weather-section">
-    <h2>7-Day Weather Forecast — Coeur d'Alene, ID</h2>
-    <div id="weather-container" class="weather-container"></div>
-  </section>
+  <section id="weather-section">
+  <canvas id="weather-icon" width="128" height="128"></canvas>
+  <div id="weather-info">
+    <h2 id="weather-location">Loading weather...</h2>
+    <p id="weather-description">Please wait</p>
+    <p id="weather-temp"></p>
+  </div>
+</section>
+
 
   <!-- Footer -->
   <footer>
