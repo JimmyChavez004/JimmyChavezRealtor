@@ -48,13 +48,13 @@
       100% { transform: translate(-50%, -50%) scale(0.94); opacity: 0.45; }
     }
 
-    /* ================== Weather Section (Enhanced + Fahrenheit) ================== */
+    /* ================== Weather Section (Enhanced + Fahrenheit + Blended Gradient) ================== */
     .weather-section {
       position: relative;
       text-align: center;
       color: #fff;
       padding: 60px 20px;
-      background: linear-gradient(to bottom, rgba(74,144,226,0.7), rgba(0,0,0,0.5));
+      background: linear-gradient(to bottom, rgba(10,10,10,0.6), rgba(19,37,54,0.8));
       overflow: hidden;
       z-index: 1;
       border-top: 3px solid #007bff;
@@ -64,8 +64,8 @@
       margin-bottom: 25px;
       font-size: 1.8rem;
       font-weight: 600;
-      color: #fff;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+      color: #00bfff;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
     }
 
     .forecast-grid {
@@ -80,7 +80,7 @@
     }
 
     .forecast-day {
-      background: rgba(0,0,0,0.65);
+      background: linear-gradient(145deg, rgba(0,123,255,0.25), rgba(19,37,54,0.5));
       border-radius: 16px;
       padding: 18px 12px;
       width: 100%;
@@ -198,11 +198,21 @@
       speed: 0.75,
     });
 
-    // --- Fetch Weather in Fahrenheit ---
+    // --- Fetch Weather in Fahrenheit + Description ---
     const LAT = 47.6777;
     const LON = -116.7805;
     const forecastGrid = document.getElementById("forecast-grid");
     const skycons = new Skycons({ color: "white" });
+
+    const weatherDescriptions = {
+      0: "Clear", 1: "Partly Cloudy", 2: "Partly Cloudy", 3: "Cloudy",
+      45: "Fog", 48: "Fog",
+      51: "Drizzle", 53: "Drizzle", 55: "Drizzle",
+      61: "Rain", 63: "Rain", 65: "Rain",
+      71: "Snow", 73: "Snow", 75: "Snow",
+      80: "Showers", 81: "Showers", 82: "Showers",
+      95: "Thunderstorm", 96: "Thunderstorm", 99: "Thunderstorm"
+    };
 
     async function fetchWeather() {
       try {
@@ -225,17 +235,18 @@
         const min = Math.round(daily.temperature_2m_min[index]);
         const rain = daily.precipitation_probability_max[index];
         const code = daily.weathercode[index];
+        const description = weatherDescriptions[code] || "Unknown";
 
         const iconMap = {
           0: Skycons.CLEAR_DAY, 1: Skycons.PARTLY_CLOUDY_DAY, 2: Skycons.PARTLY_CLOUDY_DAY, 3: Skycons.CLOUDY,
           45: Skycons.FOG, 48: Skycons.FOG,
           51: Skycons.RAIN, 53: Skycons.RAIN, 55: Skycons.RAIN,
           61: Skycons.RAIN, 63: Skycons.RAIN, 65: Skycons.RAIN,
-          66: Skycons.SLEET, 67: Skycons.SLEET,
           71: Skycons.SNOW, 73: Skycons.SNOW, 75: Skycons.SNOW,
           80: Skycons.RAIN, 81: Skycons.RAIN, 82: Skycons.RAIN,
           95: Skycons.SLEET, 96: Skycons.SLEET, 99: Skycons.SLEET
         };
+
         const iconId = `icon-${index}`;
         const skyconIcon = iconMap[code] || Skycons.CLOUDY;
 
@@ -244,9 +255,11 @@
         card.innerHTML = `
           <h3>${dayName}</h3>
           <canvas id="${iconId}" width="80" height="80"></canvas>
+          <p>${description}</p>
           <p>${max}° / ${min}° F</p>
           <p>Precip: ${rain}%</p>
         `;
+
         forecastGrid.appendChild(card);
         skycons.add(iconId, skyconIcon);
 
