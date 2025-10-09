@@ -184,7 +184,38 @@
       86: "wi-snow",
       95: "wi-thunderstorm",
       96: "wi-thunderstorm",
-      99: "wi-thunderstorm",
+      99: "wi-thunderstorm"
+    };
+
+    const weatherTextMap = {
+      0: "Clear",
+      1: "Mostly Clear",
+      2: "Partly Cloudy",
+      3: "Cloudy",
+      45: "Fog",
+      48: "Fog",
+      51: "Drizzle",
+      53: "Drizzle",
+      55: "Drizzle",
+      56: "Freezing Drizzle",
+      57: "Freezing Drizzle",
+      61: "Rain",
+      63: "Rain",
+      65: "Rain",
+      66: "Freezing Rain",
+      67: "Freezing Rain",
+      71: "Snow",
+      73: "Snow",
+      75: "Snow",
+      77: "Snow",
+      80: "Rain Showers",
+      81: "Rain Showers",
+      82: "Rain Showers",
+      85: "Snow Showers",
+      86: "Snow Showers",
+      95: "Thunderstorm",
+      96: "Thunderstorm",
+      99: "Thunderstorm"
     };
 
     function precipitationToPercent(mm) {
@@ -211,6 +242,7 @@
         const date = new Date(daily.time[i]);
         const dayName = date ? date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }) : "Weather date unavailable";
         const iconClass = weatherCodeMap[daily.weathercode[i]] || "wi-cloudy";
+        const description = weatherTextMap[daily.weathercode[i]] || "Unavailable";
         const tempMax = daily.temperature_2m_max[i] != null ? Math.round(daily.temperature_2m_max[i]) : "--";
         const tempMin = daily.temperature_2m_min[i] != null ? Math.round(daily.temperature_2m_min[i]) : "--";
         const rainPercent = daily.precipitation_sum[i] != null ? precipitationToPercent(daily.precipitation_sum[i]) : "--";
@@ -220,6 +252,7 @@
         card.innerHTML = `
           <h3>${dayName}</h3>
           <i class="wi ${iconClass} weather-icon"></i>
+          <p class="description">${description}</p>
           <p class="temp"><span class="temp-high">${tempMax}°</span> / <span class="temp-low">${tempMin}°</span></p>
           <p class="rain-chance">Chance of rain: ${rainPercent}%</p>
         `;
