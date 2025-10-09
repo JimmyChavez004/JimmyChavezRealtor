@@ -367,16 +367,15 @@ footer {
 
 .day-card,
 .forecast-day {
-  width: 130px;
+  background: #2c3e50; /* Solid dark blue */
+  border-radius: 12px;
+  padding: 15px;
   text-align: center;
-  font-size: 0.95rem;
-  padding: 18px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(6px);
+  color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 .day-card:hover,
 .forecast-day:hover {
