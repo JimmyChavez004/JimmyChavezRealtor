@@ -108,12 +108,85 @@
   </section>
 
   <!-- 7-Day Weather Forecast Section -->
-  <section class="weather-section" id="weather-section">
-    <h2>7-Day Weather Forecast — Coeur d'Alene, ID</h2>
-    <div id="forecast-grid" class="forecast-grid">
-      <p>Loading forecast…</p>
-    </div>
-  </section>
+<section class="weather-section" id="weather-section">
+  <h2>7-Day Weather Forecast — Coeur d'Alene, ID</h2>
+  <div id="forecast-grid" class="forecast-grid">
+    <p>Loading forecast…</p>
+  </div>
+</section>
+
+<!-- Scripts -->
+<script>
+  // --- Initialize VANTA Clouds Background ---
+  VANTA.CLOUDS({
+    el: "#weather-section",
+    mouseControls: true,
+    touchControls: true,
+    minHeight: 300.00,
+    minWidth: 300.00,
+    skyColor: 0x4a90e2,
+    cloudColor: 0xffffff,
+    cloudShadowColor: 0xaaaaaa,
+    sunColor: 0xffcc00,
+    sunlightColor: 0xffee99,
+    speed: 0.75,
+  });
+
+  // --- OpenWeatherMap 2.5 One Call API ---
+  const API_KEY = "50832881bb772678b299d79ab211d9e6";
+  const LAT = 47.6777;
+  const LON = -116.7805;
+  const forecastGrid = document.getElementById("forecast-grid");
+
+  const weatherIconMap = {
+    Clear: "wi-day-sunny",
+    Clouds: "wi-cloudy",
+    Rain: "wi-rain",
+    Snow: "wi-snow",
+    Thunderstorm: "wi-thunderstorm",
+    Drizzle: "wi-sprinkle",
+    Mist: "wi-fog",
+    Fog: "wi-fog",
+    Haze: "wi-day-haze"
+  };
+
+  async function fetchWeather() {
+    forecastGrid.innerHTML = "<p>Loading forecast…</p>";
+    try {
+      const res = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${LAT}&lon=${LON}&exclude=minutely,hourly,alerts&units=imperial&appid=${API_KEY}`);
+      if (!res.ok) throw new Error("API request failed");
+      const data = await res.json();
+      if (!data.daily) throw new Error("No daily forecast data");
+      renderForecast(data.daily.slice(0, 7));
+    } catch (err) {
+      console.error(err);
+      forecastGrid.innerHTML = "<p>Weather data unavailable at the moment.</p>";
+    }
+  }
+
+  function renderForecast(days) {
+    forecastGrid.innerHTML = "";
+    days.forEach(day => {
+      const date = new Date(day.dt * 1000);
+      const dayName = date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+      const iconClass = weatherIconMap[day.weather[0].main] || "wi-cloudy";
+
+      const card = document.createElement("div");
+      card.className = "forecast-day";
+      card.innerHTML = `
+        <h3>${dayName}</h3>
+        <i class="wi ${iconClass} weather-icon"></i>
+        <p class="description">${day.weather[0].main}</p>
+        <p class="temp"><span class="temp-high">${Math.round(day.temp.max)}°</span> / <span class="temp-low">${Math.round(day.temp.min)}°</span></p>
+        <p class="rain-chance">Precip: ${Math.round((day.pop || 0) * 100)}%</p>
+      `;
+      forecastGrid.appendChild(card);
+    });
+  }
+
+  fetchWeather();
+</script>
+
 
   <!-- Footer -->
   <footer>
