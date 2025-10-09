@@ -73,6 +73,10 @@
       0% { transform: translateY(0); }
       100% { transform: translateY(-8px); }
     }
+
+    .placeholder {
+      opacity: 0.5;
+    }
   </style>
 </head>
 <body>
@@ -108,89 +112,12 @@
   </section>
 
   <!-- 7-Day Weather Forecast Section -->
-<section class="weather-section" id="weather-section">
-  <h2>7-Day Weather Forecast — Coeur d'Alene, ID</h2>
-  <div id="forecast-grid" class="forecast-grid">
-    <p>Loading forecast…</p>
-  </div>
-</section>
-
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
-
-<script>
-  // --- Initialize VANTA Clouds Background ---
-  VANTA.CLOUDS({
-    el: "#weather-section",
-    mouseControls: true,
-    touchControls: true,
-    minHeight: 300.00,
-    minWidth: 300.00,
-    skyColor: 0x4a90e2,
-    cloudColor: 0xffffff,
-    cloudShadowColor: 0xaaaaaa,
-    sunColor: 0xffcc00,
-    sunlightColor: 0xffee99,
-    speed: 0.75,
-  });
-
-  // --- OpenWeatherMap 2.5 One Call API ---
-  const API_KEY = "50832881bb772678b299d79ab211d9e6";
-  const LAT = 47.6777;
-  const LON = -116.7805;
-  const forecastGrid = document.getElementById("forecast-grid");
-
-  const weatherIconMap = {
-    Clear: "wi-day-sunny",
-    Clouds: "wi-cloudy",
-    Rain: "wi-rain",
-    Snow: "wi-snow",
-    Thunderstorm: "wi-thunderstorm",
-    Drizzle: "wi-sprinkle",
-    Mist: "wi-fog",
-    Fog: "wi-fog",
-    Haze: "wi-day-haze"
-  };
-
-  async function fetchWeather() {
-    forecastGrid.innerHTML = "<p>Loading forecast…</p>";
-    try {
-      const res = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${LAT}&lon=${LON}&exclude=minutely,hourly,alerts&units=imperial&appid=${API_KEY}`);
-      if (!res.ok) throw new Error("API request failed");
-      const data = await res.json();
-      if (!data.daily) throw new Error("No daily forecast data");
-      renderForecast(data.daily.slice(0, 7));
-    } catch (err) {
-      console.error(err);
-      forecastGrid.innerHTML = "<p>Weather data unavailable at the moment.</p>";
-    }
-  }
-
-  function renderForecast(days) {
-    forecastGrid.innerHTML = "";
-    days.forEach(day => {
-      const date = new Date(day.dt * 1000);
-      const dayName = date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
-      const iconClass = weatherIconMap[day.weather[0].main] || "wi-cloudy";
-
-      const card = document.createElement("div");
-      card.className = "forecast-day";
-      card.innerHTML = `
-        <h3>${dayName}</h3>
-        <i class="wi ${iconClass} weather-icon"></i>
-        <p class="description">${day.weather[0].main}</p>
-        <p class="temp"><span class="temp-high">${Math.round(day.temp.max)}°</span> / <span class="temp-low">${Math.round(day.temp.min)}°</span></p>
-        <p class="rain-chance">Precip: ${Math.round((day.pop || 0) * 100)}%</p>
-      `;
-      forecastGrid.appendChild(card);
-    });
-  }
-
-  fetchWeather();
-</script>
-
-
+  <section class="weather-section" id="weather-section">
+    <h2>7-Day Weather Forecast — Coeur d'Alene, ID</h2>
+    <div id="forecast-grid" class="forecast-grid">
+      <p>Loading forecast…</p>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
@@ -224,8 +151,8 @@
       speed: 0.75,
     });
 
-    // --- OpenWeatherMap 3.0 One Call API ---
-    const API_KEY = "50832881bb772678b299d79ab211d9e6"; // replace if needed
+    // --- Weather Forecast Script ---
+    const API_KEY = "50832881bb772678b299d79ab211d9e6";
     const LAT = 47.6777;
     const LON = -116.7805;
     const forecastGrid = document.getElementById("forecast-grid");
@@ -245,43 +172,61 @@
     async function fetchWeather() {
       forecastGrid.innerHTML = "<p>Loading forecast…</p>";
       try {
-        const res = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${LAT}&lon=${LON}&exclude=minutely,hourly,alerts&units=imperial&appid=${API_KEY}`);
+        const res = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${LAT}&lon=${LON}&exclude=minutely,hourly,alerts&units=imperial&appid=${API_KEY}`);
         if (!res.ok) throw new Error("API request failed");
         const data = await res.json();
-        if (!data.daily) throw new Error("No daily forecast data");
+        if (!data.daily || data.daily.length === 0) throw new Error("No daily forecast data");
         renderForecast(data.daily.slice(0, 7));
       } catch (err) {
         console.error(err);
-        forecastGrid.innerHTML = "<p>Weather data unavailable at the moment.</p>";
+        renderPlaceholderForecast();
       }
     }
 
     function renderForecast(days) {
       forecastGrid.innerHTML = "";
       days.forEach(day => {
-        const date = new Date(day.dt * 1000);
-        const dayName = date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
-        const iconClass = weatherIconMap[day.weather[0].main] || "wi-cloudy";
+        const dayName = day.dt ? new Date(day.dt * 1000).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }) : "Weather date unavailable";
+        const iconClass = (day.weather && day.weather[0] && weatherIconMap[day.weather[0].main]) || "wi-cloudy";
+        const description = (day.weather && day.weather[0] && day.weather[0].main) || "Unavailable";
+        const tempMax = day.temp ? Math.round(day.temp.max) : "--";
+        const tempMin = day.temp ? Math.round(day.temp.min) : "--";
+        const pop = day.pop != null ? Math.round(day.pop * 100) : "--";
 
         const card = document.createElement("div");
         card.className = "forecast-day";
         card.innerHTML = `
           <h3>${dayName}</h3>
           <i class="wi ${iconClass} weather-icon"></i>
-          <p class="description">${day.weather[0].main}</p>
-          <p class="temp">${Math.round(day.temp.max)}° / ${Math.round(day.temp.min)}°</p>
-          <p class="rain-chance">Precip: ${Math.round((day.pop || 0) * 100)}%</p>
+          <p class="description">${description}</p>
+          <p class="temp"><span class="temp-high">${tempMax}°</span> / <span class="temp-low">${tempMin}°</span></p>
+          <p class="rain-chance">Precip: ${pop}%</p>
         `;
         forecastGrid.appendChild(card);
       });
     }
 
+    function renderPlaceholderForecast() {
+      forecastGrid.innerHTML = "";
+      for (let i = 0; i < 7; i++) {
+        const card = document.createElement("div");
+        card.className = "forecast-day placeholder";
+        card.innerHTML = `
+          <h3>Weather date unavailable</h3>
+          <i class="wi wi-cloudy weather-icon"></i>
+          <p class="description">Data unavailable</p>
+          <p class="temp"><span class="temp-high">--°</span> / <span class="temp-low">--°</span></p>
+          <p class="rain-chance">Precip: --%</p>
+        `;
+        forecastGrid.appendChild(card);
+      }
+    }
+
     fetchWeather();
   </script>
+
 </body>
 </html>
-
-
 
 
 
