@@ -4,19 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jimmy Chavez, Realtor® | Future Realty</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Jimmy Chavez, REALTOR® serving North Idaho. Buy or sell your home with trusted local expertise in Coeur d'Alene, Hayden, Rathdrum, and Post Falls.">
+  <meta name="keywords" content="Jimmy Chavez, Realtor, North Idaho, Coeur d'Alene Real Estate, Hayden, Rathdrum, Post Falls, Homes for Sale">
+  <meta property="og:title" content="Jimmy Chavez, Realtor® | Future Realty">
+  <meta property="og:description" content="Buy or sell your home in North Idaho with local expertise and exceptional service.">
+  <meta property="og:image" content="images/Headshot.jpeg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="stylesheet" href="style.css">
-  <!-- Skycons for animated weather icons -->
-  <script src="https://darkskyapp.github.io/skycons/skycons.js"></script>
-  <!-- VANTA.js for animated clouds background -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
+
+  <!-- Skycons -->
+  <script src="https://darkskyapp.github.io/skycons/skycons.js" defer></script>
+
+  <!-- VANTA.js -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js" defer></script>
 </head>
 <body>
+
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
 
   <!-- Header -->
   <header>
     <h1>Jimmy Chavez, Realtor®</h1>
-    <nav>
+    <nav aria-label="Main Navigation">
       <a href="index.html">Home</a>
       <a href="listings.html">Listings</a>
       <a href="blog.html">Blog</a>
@@ -25,144 +40,149 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero" id="about">
-    <div class="hero-left">
-      <h1>Welcome!</h1>
-      <p>
-        I’m <strong>Jimmy Chavez</strong>, a dedicated REALTOR® serving North Idaho, including Coeur d'Alene, Hayden, Rathdrum, and Post Falls.  
-        I provide <strong>local expertise, transparent guidance, and exceptional service</strong> to help families and individuals confidently buy or sell their homes.  
-        Backed by the trusted team at 
-        <span class="broker-logo-glow logo-white-bg">
-          <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline">
-        </span> <strong>Future Realty</strong>, I’m committed to making your real estate experience smooth and rewarding.
-      </p>
-    </div>
-    <div class="hero-right">
-      <img src="images/Headshot.jpeg" alt="Jimmy Chavez Realtor Headshot" class="hero-headshot">
-    </div>
-  </section>
+  <!-- Main Content -->
+  <main id="main-content">
 
-  <!-- 7-Day Weather Forecast Section -->
-  <section class="weather-section" id="weather-section">
-    <h2>7-Day Weather Forecast — Coeur d'Alene, ID</h2>
-    <div id="forecast-grid" class="forecast-grid">
-      <p>Loading forecast…</p>
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+      <div class="hero-left">
+        <h1>Welcome!</h1>
+        <p>
+          I’m <strong>Jimmy Chavez</strong>, a dedicated REALTOR® serving North Idaho, including Coeur d'Alene, Hayden, Rathdrum, and Post Falls.  
+          I provide <strong>local expertise, transparent guidance, and exceptional service</strong> to help families and individuals confidently buy or sell their homes.  
+          Backed by the trusted team at 
+          <span class="broker-logo-glow logo-white-bg">
+            <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline">
+          </span> <strong>Future Realty</strong>, I’m committed to making your real estate experience smooth and rewarding.
+        </p>
+      </div>
+      <div class="hero-right">
+        <img src="images/Headshot.jpeg" alt="Jimmy Chavez Realtor Headshot" class="hero-headshot" loading="lazy">
+      </div>
+    </section>
+
+    <!-- 7-Day Weather Forecast Section -->
+    <section class="weather-section" id="weather-section">
+      <h2>7-Day Weather Forecast — Coeur d'Alene, ID</h2>
+      <div id="forecast-grid" class="forecast-grid" aria-live="polite">
+        <p>Loading forecast…</p>
+      </div>
+    </section>
+
+  </main>
 
   <!-- Footer -->
   <footer>
-  <div class="footer-content">
-    <p>© 2025 Jimmy Chavez, Realtor® — 
-       <span class="broker-logo-glow">
-         <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline">
-       </span> Future Realty
-    </p>
-    <p class="built-with">Built with ❤️ on GitHub Pages</p>
-  </div>
-</footer>
+    <div class="footer-content">
+      <p>© 2025 Jimmy Chavez, Realtor® — 
+         <span class="broker-logo-glow">
+           <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline">
+         </span> Future Realty
+      </p>
+      <p class="built-with">Built with ❤️ on GitHub Pages</p>
+    </div>
+  </footer>
 
-  <!-- Weather & VANTA Scripts -->
+  <!-- Scripts -->
   <script>
-    // VANTA Clouds Background
-    VANTA.CLOUDS({
-      el: "#weather-section",
-      mouseControls: true,
-      touchControls: true,
-      minHeight: 300.00,
-      minWidth: 300.00,
-      skyColor: 0x4a90e2,
-      cloudColor: 0xffffff,
-      cloudShadowColor: 0xaaaaaa,
-      sunColor: 0xffcc00,
-      sunlightColor: 0xffee99,
-      speed: 0.75,
-      backgroundAlpha: 0
-    });
+    document.addEventListener("DOMContentLoaded", () => {
 
-    // Weather Forecast (Fahrenheit + Description)
-    const LAT = 47.6777;
-    const LON = -116.7805;
-    const forecastGrid = document.getElementById("forecast-grid");
-    const skycons = new Skycons({ color: "white" });
-
-    async function fetchWeather() {
-      try {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&temperature_unit=fahrenheit&timezone=auto`;
-        const res = await fetch(url);
-        const data = await res.json();
-        renderForecast(data.daily);
-      } catch (err) {
-        console.error(err);
-        forecastGrid.innerHTML = "<p>Weather data unavailable at the moment.</p>";
-      }
-    }
-
-    function weatherDescription(code) {
-      const descMap = {
-        0: "Clear",
-        1: "Partly Cloudy",
-        2: "Partly Cloudy",
-        3: "Cloudy",
-        45: "Fog",
-        48: "Fog",
-        51: "Drizzle",
-        61: "Rain",
-        71: "Snow",
-        80: "Rain Showers",
-        95: "Thunderstorms"
-      };
-      return descMap[code] || "Unknown";
-    }
-
-    function renderForecast(daily) {
-      forecastGrid.innerHTML = "";
-      const days = daily.time;
-
-      days.forEach((dateStr, index) => {
-        const date = new Date(dateStr);
-        const dayName = date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
-        const max = Math.round(daily.temperature_2m_max[index]);
-        const min = Math.round(daily.temperature_2m_min[index]);
-        const rain = daily.precipitation_probability_max[index];
-        const code = daily.weathercode[index];
-
-        // Skycons mapping
-        const iconMap = {
-          0: Skycons.CLEAR_DAY,
-          1: Skycons.PARTLY_CLOUDY_DAY,
-          2: Skycons.PARTLY_CLOUDY_DAY,
-          3: Skycons.CLOUDY,
-          45: Skycons.FOG,
-          48: Skycons.FOG,
-          51: Skycons.RAIN,
-          61: Skycons.RAIN,
-          71: Skycons.SNOW,
-          80: Skycons.RAIN,
-          95: Skycons.SLEET
-        };
-        const iconId = `icon-${index}`;
-        const skyconIcon = iconMap[code] || Skycons.CLOUDY;
-
-        // Create weather card
-        const card = document.createElement("div");
-        card.classList.add("forecast-day");
-        card.innerHTML = `
-          <h3>${dayName}</h3>
-          <canvas id="${iconId}" width="80" height="80"></canvas>
-          <p>${max}° / ${min}°</p>
-          <p>${weatherDescription(code)}</p>
-          <p>Precip: ${rain}%</p>
-        `;
-        forecastGrid.appendChild(card);
-        skycons.add(iconId, skyconIcon);
+      // VANTA Clouds Background
+      VANTA.CLOUDS({
+        el: "#weather-section",
+        mouseControls: true,
+        touchControls: true,
+        minHeight: 300.00,
+        minWidth: 300.00,
+        skyColor: 0x4a90e2,
+        cloudColor: 0xffffff,
+        cloudShadowColor: 0xaaaaaa,
+        sunColor: 0xffcc00,
+        sunlightColor: 0xffee99,
+        speed: 0.75,
+        backgroundAlpha: 0
       });
 
-      skycons.play();
-    }
+      // Weather Forecast
+      const LAT = 47.6777;
+      const LON = -116.7805;
+      const forecastGrid = document.getElementById("forecast-grid");
+      const skycons = new Skycons({ color: "white" });
 
-    fetchWeather();
+      async function fetchWeather() {
+        try {
+          const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&temperature_unit=fahrenheit&timezone=auto`;
+          const res = await fetch(url);
+          const data = await res.json();
+          renderForecast(data.daily);
+        } catch (err) {
+          console.error(err);
+          forecastGrid.innerHTML = "<p>Weather data unavailable at the moment.</p>";
+        }
+      }
+
+      function weatherDescription(code) {
+        const descMap = {
+          0: "Clear",
+          1: "Partly Cloudy",
+          2: "Partly Cloudy",
+          3: "Cloudy",
+          45: "Fog",
+          48: "Fog",
+          51: "Drizzle",
+          61: "Rain",
+          71: "Snow",
+          80: "Rain Showers",
+          95: "Thunderstorms"
+        };
+        return descMap[code] || "Unknown";
+      }
+
+      function renderForecast(daily) {
+        forecastGrid.innerHTML = "";
+        daily.time.forEach((dateStr, index) => {
+          const date = new Date(dateStr);
+          const dayName = date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+          const max = Math.round(daily.temperature_2m_max[index]);
+          const min = Math.round(daily.temperature_2m_min[index]);
+          const rain = daily.precipitation_probability_max[index];
+          const code = daily.weathercode[index];
+
+          const iconMap = {
+            0: Skycons.CLEAR_DAY,
+            1: Skycons.PARTLY_CLOUDY_DAY,
+            2: Skycons.PARTLY_CLOUDY_DAY,
+            3: Skycons.CLOUDY,
+            45: Skycons.FOG,
+            48: Skycons.FOG,
+            51: Skycons.RAIN,
+            61: Skycons.RAIN,
+            71: Skycons.SNOW,
+            80: Skycons.RAIN,
+            95: Skycons.SLEET
+          };
+          const iconId = `icon-${index}`;
+          const skyconIcon = iconMap[code] || Skycons.CLOUDY;
+
+          const card = document.createElement("div");
+          card.classList.add("forecast-day");
+          card.innerHTML = `
+            <h3>${dayName}</h3>
+            <canvas id="${iconId}" width="80" height="80"></canvas>
+            <p>${max}° / ${min}°</p>
+            <p>${weatherDescription(code)}</p>
+            <p>Precip: ${rain}%</p>
+          `;
+          forecastGrid.appendChild(card);
+          skycons.add(iconId, skyconIcon);
+        });
+
+        skycons.play();
+      }
+
+      fetchWeather();
+
+    });
   </script>
 </body>
 </html>
