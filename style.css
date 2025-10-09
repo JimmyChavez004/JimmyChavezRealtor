@@ -707,4 +707,91 @@ footer{background:#f8f8f8;padding:18px 12px;text-align:center;color:#333}
     max-width: 200px;
   }
 }
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 20px;
+  background: #1c2a4a;
+  color: #fff;
+}
+
+.hero-left {
+  max-width: 600px;
+}
+
+.hero-left h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero-left p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.hero-right img.hero-headshot {
+  max-width: 220px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+}
+
+/* Logo with white background */
+.logo-white-bg {
+  background-color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.broker-logo-inline {
+  height: 30px;
+  vertical-align: middle;
+}
+
+/* Weather Forecast Grid */
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.forecast-day {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.forecast-day:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.forecast-day h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.forecast-day .weather-icon {
+  margin: 10px 0;
+}
+
+.forecast-day .description {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.forecast-day .temp,
+.forecast-day .rain-chance {
+  font-size: 0.85rem;
+}
 
