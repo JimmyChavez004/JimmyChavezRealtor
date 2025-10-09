@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Jimmy Chavez | Future Realty</title>
+  <meta name="description" content="Contact Jimmy Chavez, Realtor® at Future Realty in Idaho. Ask questions, schedule showings, or get advice on buying or selling your home.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,29 +19,47 @@
     </nav>
   </header>
 
-  <section class="contact-form">
-    <h2>Contact Me</h2>
-    <p>Have a question or want to talk real estate? Send me a message below and I’ll get back to you soon.</p>
-    <form action="https://formspree.io/f/mvgwqwka" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <input type="hidden" name="_next" value="thankyou.html">
-      <button type="submit">Send Message</button>
-    </form>
-    <p style="text-align:center; margin-top:10px;">Or call/text me at <strong>(805) 868-6369</strong></p>
-  </section>
+  <main>
+    <section class="contact-form">
+      <h2>Contact Me</h2>
+      <p>Have a question or want to talk real estate? Send me a message below and I’ll get back to you soon.</p>
+      
+      <form action="https://formspree.io/f/mvgwqwka" method="POST">
+        <label for="name">Your Name</label>
+        <input id="name" type="text" name="name" placeholder="Your Name" required>
 
- <footer>
+        <label for="email">Your Email</label>
+        <input id="email" type="email" name="email" placeholder="Your Email" required>
+
+        <label for="subject">Subject (optional)</label>
+        <input id="subject" type="text" name="subject" placeholder="Subject">
+
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+
+        <input type="hidden" name="_next" value="thankyou.html">
+        <input type="hidden" name="_captcha" value="false">
+
+        <button type="submit">Send Message</button>
+      </form>
+
+      <p style="text-align:center; margin-top:10px;">
+        Or call/text me at <strong aria-label="Phone number">(805) 868-6369</strong>
+      </p>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
     <div class="footer-content">
       <p>© 2025 Jimmy Chavez, Realtor® — 
-         <span class="broker-logo-glow">
-           <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline">
-         </span> Future Realty
+        <a href="https://www.futurerealtyidaho.com" target="_blank" rel="noopener">
+          <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline broker-logo-glow">
+        </a> Future Realty
       </p>
       <p class="built-with">Built with ❤️ on GitHub Pages</p>
     </div>
   </footer>
 </body>
 </html>
+
 
