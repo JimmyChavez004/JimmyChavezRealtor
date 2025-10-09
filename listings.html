@@ -1,40 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Listings | Jimmy Chavez Realtor®</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Explore current home listings in North Idaho with Jimmy Chavez, Realtor®. Browse properties in Coeur d'Alene, Hayden, Rathdrum, and Post Falls.">
+  <link rel="stylesheet" href="style.css" />
   <style>
-    /* --- Basic Reset & Typography --- */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background-color: #f9f9f9;
-      color: #333;
+    /* --- Hero Section for Listings Page --- */
+    .listings-hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #0d1b2a, #1b263b);
+      color: #f5f5f5;
     }
-    a {
-      text-decoration: none;
-      color: inherit;
+    .listings-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
     }
-    header, footer {
-      background-color: #004080;
-      color: #fff;
-      padding: 1rem 2rem;
-    }
-    header h1 {
-      margin: 0 0 0.5rem;
-    }
-    nav a {
-      margin-right: 1rem;
-      padding: 0.25rem 0.5rem;
-      color: #fff;
-    }
-    nav a.active {
-      border-bottom: 2px solid #fff;
-      font-weight: bold;
+    .listings-hero p {
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #dcdcdc;
     }
 
     /* --- Listings Grid --- */
@@ -43,80 +31,73 @@
       margin: 2rem auto;
       padding: 0 1rem;
     }
-    .listings-grid h2 {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
     .grid {
       display: grid;
       gap: 2rem;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
     .listing-card {
       background-color: #fff;
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
       display: flex;
       flex-direction: column;
-      transition: transform 0.2s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .listing-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.25);
     }
     .listing-card img {
       width: 100%;
-      height: 200px;
+      height: 220px;
       object-fit: cover;
     }
+    .listing-card-content {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
     .listing-card h3 {
-      margin: 1rem;
-      font-size: 1.25rem;
+      margin: 0 0 0.5rem;
+      color: #004080;
     }
     .listing-card p {
-      margin: 0 1rem 1rem;
+      margin: 0 0 0.5rem;
+      color: #333;
+      font-size: 0.95rem;
     }
     .listing-card .price {
       font-weight: bold;
-      margin: 0 1rem 1rem;
-      color: #004080;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #007bff;
     }
     .listing-card .btn {
-      margin: 0 1rem 1rem;
+      display: inline-block;
+      text-align: center;
       padding: 0.5rem;
       background-color: #004080;
       color: #fff;
-      text-align: center;
-      border-radius: 5px;
-      transition: background-color 0.2s;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background-color 0.3s;
     }
     .listing-card .btn:hover {
       background-color: #0066cc;
     }
 
-    /* --- Footer --- */
-    footer .footer-content {
-      text-align: center;
-      font-size: 0.9rem;
-    }
-    .broker-logo-inline {
-      height: 24px;
-      vertical-align: middle;
-      margin-left: 0.3rem;
-    }
-
-    @media(max-width: 500px){
-      header, footer {
-        text-align: center;
-      }
-      nav a {
-        display: block;
-        margin: 0.5rem 0;
-      }
+    @media(max-width:600px){
+      .listings-hero h1 { font-size: 2rem; }
+      .listing-card img { height: 200px; }
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
     <h1>Current Listings</h1>
     <nav>
@@ -128,28 +109,35 @@
     </nav>
   </header>
 
+  <!-- Hero Section -->
+  <section class="listings-hero">
+    <h1>Explore Homes in North Idaho</h1>
+    <p>Browse the latest properties in Coeur d'Alene, Hayden, Rathdrum, and Post Falls. Whether you're buying or selling, I'm here to guide you every step of the way.</p>
+  </section>
+
+  <!-- Listings Grid -->
   <section class="listings-grid">
-    <h2>Featured Properties</h2>
     <div class="grid">
       <!-- Example Listing Card -->
       <article class="listing-card">
         <img src="images/sample-home.jpg" alt="Sample Home Listing">
-        <h3>No Current Listings</h3>
-        <p>Please check back soon for the latest properties!</p>
-        <p class="price">—</p>
-        <a href="#" class="btn">View Details</a>
+        <div class="listing-card-content">
+          <h3>No Current Listings</h3>
+          <p>Please check back soon for the latest properties!</p>
+          <p class="price">—</p>
+          <a href="#" class="btn">View Details</a>
+        </div>
       </article>
 
-      <!-- Add more listing cards here -->
+      <!-- Add more listing cards dynamically here -->
     </div>
   </section>
 
-  <footer>
+  <!-- Footer -->
+  <footer role="contentinfo">
     <div class="footer-content">
       <p>© 2025 Jimmy Chavez, Realtor® — 
-         <span class="broker-logo-glow">
-           <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline">
-         </span> Future Realty
+         <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline"> Future Realty
       </p>
       <p class="built-with">Built with ❤️ on GitHub Pages</p>
     </div>
