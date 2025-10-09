@@ -112,141 +112,40 @@ nav a {
   box-shadow: 0 8px 20px rgba(0,0,0,0.45);
 }
 
-.broker-logo-card {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background-color: #fff;
-  padding: 8px 12px;
-  border-radius: 12px;
-  border: 2px solid var(--accent);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  position: relative;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  margin-top: 16px;
-}
-
-.broker-logo-card::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 130%;
-  height: 130%;
-  border-radius: 12px;
-  background: radial-gradient(circle, rgba(0,123,255,0.35) 0%, rgba(28,42,74,0.15) 70%);
-  filter: blur(14px);
-  opacity: 0.55;
-  animation: pulseGlowCompact 2.5s ease-in-out infinite;
-  z-index: -1;
-}
-
-@keyframes pulseGlowCompact {
-  0% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.4; }
-  50% { transform: translate(-50%, -50%) scale(1.04); opacity: 0.7; }
-  100% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.4; }
-}
-
-.broker-logo-card:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 26px rgba(0,0,0,0.35);
-}
-/* White background for inline broker logo in text */
 .logo-white-bg {
-  background-color: #ffffff;
-  padding: 2px 6px;
+  background-color: #fff;
+  padding: 2px 4px;
   border-radius: 6px;
-  display: inline-block;
-}
-
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: #007bff;
-  color: #fff;
-  padding: 8px 12px;
-  z-index: 100;
-  transition: top 0.3s;
-}
-
-.skip-link:focus {
-  top: 0;
 }
 
 /* ================== Weather Section ================== */
 .weather-section {
   text-align: center;
-  background: linear-gradient(to bottom, #1c2a4a, #4a90e2); /* gradient for cards visibility */
   padding: 50px 20px;
   border-top: 3px solid var(--accent);
-  border-bottom: 3px solid #fff; /* white bar under VANTA */
+  border-bottom: 3px solid #fff;
+  position: relative;
 }
 
-.weather-section h2 {
-  margin-bottom: 25px;
-  font-size: 1.8rem;
-  color: #0d1b2a; /* matches nav */
-  text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
-}
-
-/* Framed weather forecast container */
-.weather-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: linear-gradient(135deg, #0d1b2a, #132536); /* same as hero background */
-  padding: 50px 20px;
-  border: 3px solid #000; /* black border around the frame */
-  border-radius: 16px;
-  margin: 40px auto;
-  max-width: 1200px;
-}
-
-/* Forecast grid inside the frame */
-.forecast-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px;
-  width: 100%;
-  margin-top: 20px;
-}
-
-/* Forecast cards */
-.forecast-day {
-  background: rgba(28, 42, 74, 0.95); /* slightly transparent for clouds effect */
+/* Frame around title only */
+.forecast-title-frame {
+  display: inline-block;
+  background: linear-gradient(135deg, #0d1b2a, #132536);
+  padding: 12px 24px;
+  border: 2px solid #000;
   border-radius: 12px;
-  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.forecast-title-frame h2 {
+  margin: 0;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+  font-size: 1.8rem;
   text-align: center;
-  color: #fff;
-  text-shadow: 2px 2px 0 #000; /* white text with black outline */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-width: 120px;
 }
 
-.forecast-day h3,
-.forecast-day p {
-  color: #fff;
-  text-shadow: 2px 2px 0 #000; /* ensures all text has black outline */
-}
-
-/* Responsive tweaks */
-@media (max-width:900px){
-  .forecast-day { min-width: 140px; }
-}
-
-@media (max-width:480px){
-  .forecast-day { width: 92%; }
-}
-
+/* Forecast Grid */
 .forecast-grid {
   display: flex;
   flex-wrap: wrap;
@@ -256,87 +155,28 @@ nav a {
   margin: 0 auto;
 }
 
+/* Forecast Cards */
 .forecast-day {
-  background: rgba(28,42,74,0.95); /* fully visible card */
+  background: rgba(28,42,74,0.95);
   border-radius: 12px;
   padding: 15px;
   text-align: center;
   color: #fff;
+  text-shadow: 2px 2px 0 #000;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   min-width: 120px;
 }
 
+.forecast-day h3,
+.forecast-day p {
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+}
+
 .forecast-day:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-}
-
-.forecast-day h3 {
-  margin-bottom: 10px;
-  font-size: 1rem;
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.forecast-day p {
-  margin: 4px 0;
-  font-size: 0.95rem;
-}
-
-.weather-desc {
-  font-style: italic;
-  color: #ffd166;
-  margin-top: 6px;
-}
-
-/* ================== Contact Form ================== */
-.contact-form {
-  max-width: 680px;
-  margin: 28px auto;
-  padding: 22px;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  color: #222;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-}
-
-.contact-form h2 {
-  margin-top: 0;
-  text-align: center;
-}
-
-.contact-form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.contact-form button {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  background: var(--accent);
-  color: #fff;
-  border: 0;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.contact-form button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
 }
 
 /* ================== Footer ================== */
@@ -377,7 +217,6 @@ footer {
 
 @media (max-width:480px){
   .hero { padding:22px; }
-  .contact-form { padding:14px; }
   .forecast-day { width:92%; }
   .broker-logo-inline { height:44px; }
 }
