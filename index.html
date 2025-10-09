@@ -12,12 +12,12 @@
   <header>
     <h1>Jimmy Chavez, Realtor®</h1>
     <nav>
-  <a href="index.html">Home</a>
-  <a href="listings.html">Listings</a>
-  <a href="blog.html">Blog</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</nav>
+      <a href="index.html">Home</a>
+      <a href="listings.html">Listings</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
 
   <!-- Hero Section -->
@@ -28,7 +28,7 @@
       I’m <strong>Jimmy Chavez</strong>, a dedicated REALTOR® serving North Idaho, including Coeur d'Alene, Hayden, Rathdrum, and Post Falls.  
       I provide <strong>local expertise, transparent guidance, and exceptional service</strong> to help families and individuals confidently buy or sell their homes.  
       Backed by the trusted team at 
-      <span class="broker-logo-glow">
+      <span class="broker-logo-glow logo-white-bg">
         <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline">
       </span> <strong>Future Realty</strong>, I’m committed to making your real estate experience smooth and rewarding.
     </p>
@@ -38,121 +38,13 @@
   </div>
 </section>
 
-<!-- 7-Day Forecast Section -->
-<section class="weather-section">
+<!-- 7-Day Weather Forecast Section -->
+<section class="weather-section" id="weather-section">
   <h2>7-Day Weather Forecast — Coeur d'Alene, ID</h2>
-  <div id="weather-container" class="weather-container"></div>
+  <div id="forecast-grid" class="forecast-grid">
+    <p>Loading forecast…</p>
+  </div>
 </section>
-
-<script>
-const API_KEY = "50832881bb772678b299d79ab211d9e6";
-const LAT = 47.6777;
-const LON = -116.7805;
-
-// Fetch 7-day forecast from OpenWeatherMap
-async function fetchWeather() {
-  const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${LAT}&lon=${LON}&exclude=current,minutely,hourly,alerts&units=imperial&appid=${API_KEY}`
-  );
-  const data = await res.json();
-  return data.daily.slice(0, 7);
-}
-
-// Map OpenWeatherMap icon codes to animated SVGs
-function getAnimatedIcon(icon) {
-  const icons = {
-    "01d": `<div class="anim-icon sun"><div class="sun-core"></div><div class="sun-ray ray1"></div><div class="sun-ray ray2"></div><div class="sun-ray ray3"></div><div class="sun-ray ray4"></div></div>`, // clear day
-    "01n": `<div class="anim-icon moon">🌙</div>`,
-    "02d": `<div class="anim-icon sun-cloud"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="sun-core"></div></div>`,
-    "02n": `<div class="anim-icon moon-cloud"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div>🌙</div>`,
-    "03d": `<div class="anim-icon cloud"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div></div>`,
-    "03n": `<div class="anim-icon cloud"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div></div>`,
-    "04d": `<div class="anim-icon cloud-heavy"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div></div>`,
-    "04n": `<div class="anim-icon cloud-heavy"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div></div>`,
-    "09d": `<div class="anim-icon rain"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="raindrops"><div class="drop"></div><div class="drop"></div><div class="drop"></div></div></div>`,
-    "09n": `<div class="anim-icon rain"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="raindrops"><div class="drop"></div><div class="drop"></div><div class="drop"></div></div></div>`,
-    "10d": `<div class="anim-icon rain-sun"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="sun-core"></div><div class="raindrops"><div class="drop"></div><div class="drop"></div></div></div>`,
-    "10n": `<div class="anim-icon rain-moon"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div>🌙<div class="raindrops"><div class="drop"></div><div class="drop"></div></div></div>`,
-    "13d": `<div class="anim-icon snow"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="flakes"><div class="flake"></div><div class="flake"></div><div class="flake"></div></div></div>`,
-    "13n": `<div class="anim-icon snow"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="flakes"><div class="flake"></div><div class="flake"></div><div class="flake"></div></div></div>`,
-    "11d": `<div class="anim-icon thunder"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="bolt"></div></div>`,
-    "11n": `<div class="anim-icon thunder"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="bolt"></div></div>`
-  };
-  return icons[icon] || icons["01d"];
-}
-
-// Create each day’s forecast card
-function createDayCard(day) {
-  const date = new Date(day.dt * 1000);
-  const options = { weekday: "short", month: "short", day: "numeric" };
-  const dayStr = date.toLocaleDateString("en-US", options);
-
-  return `
-    <div class="day-card">
-      <h3>${dayStr}</h3>
-      <div class="weather-icon">${getAnimatedIcon(day.weather[0].icon)}</div>
-      <p class="temp-high">High: ${Math.round(day.temp.max)}°F</p>
-      <p class="temp-low">Low: ${Math.round(day.temp.min)}°F</p>
-      <p class="rain-chance">Precip: ${Math.round(day.pop * 100)}%</p>
-    </div>
-  `;
-}
-
-// Render forecast
-async function renderWeather() {
-  const days = await fetchWeather();
-  const container = document.getElementById("weather-container");
-  container.innerHTML = days.map(createDayCard).join("");
-}
-
-renderWeather();
-</script>
-
-
-<script>
-const API_KEY = "50832881bb772678b299d79ab211d9e6";
-const LAT = 47.6777;
-const LON = -116.7805;
-
-async function fetchWeather() {
-  const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${LAT}&lon=${LON}&exclude=current,minutely,hourly,alerts&units=imperial&appid=${API_KEY}`
-  );
-  const data = await res.json();
-  return data.daily.slice(0, 7); // 7-day forecast
-}
-
-function getWeatherIcon(icon) {
-  // OpenWeatherMap icons
-  return `<img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="weather icon" style="width:60px;">`;
-}
-
-function createDayCard(day) {
-  const date = new Date(day.dt * 1000);
-  const options = { weekday: "short", month: "short", day: "numeric" };
-  const dayStr = date.toLocaleDateString("en-US", options);
-
-  return `
-    <div class="day-card">
-      <h3>${dayStr}</h3>
-      <div class="weather-icon">${getWeatherIcon(day.weather[0].icon)}</div>
-      <p class="temp-high">High: ${Math.round(day.temp.max)}°F</p>
-      <p class="temp-low">Low: ${Math.round(day.temp.min)}°F</p>
-      <p class="rain-chance">Precip: ${Math.round(day.pop * 100)}%</p>
-    </div>
-  `;
-}
-
-async function renderWeather() {
-  const days = await fetchWeather();
-  const container = document.getElementById("weather-container");
-  container.innerHTML = days.map(createDayCard).join("");
-}
-
-renderWeather();
-</script>
-
-
 
   <!-- Footer -->
   <footer>
@@ -166,173 +58,70 @@ renderWeather();
     </div>
   </footer>
 
-  <!-- Weather Script -->
+  <!-- Scripts -->
+
+  <!-- Skycons for animated weather icons -->
+  <script src="https://darkskyapp.github.io/skycons/skycons.js"></script>
+
+  <!-- VANTA.js for animated clouds background -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
+
   <script>
-(async function() {
-  const LAT = 47.6777;
-  const LON = -116.7805;
-  const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=America/Los_Angeles&temperature_unit=fahrenheit&forecast_days=7`;
+    // --- Initialize VANTA Clouds Background ---
+    VANTA.CLOUDS({
+      el: "#weather-section",
+      mouseControls: true,
+      touchControls: true,
+      minHeight: 300.00,
+      minWidth: 300.00,
+      skyColor: 0x4a90e2,
+      cloudColor: 0xffffff,
+      cloudShadowColor: 0xaaaaaa,
+      sunColor: 0xffcc00,
+      sunlightColor: 0xffee99,
+      speed: 0.75,
+    });
 
-  const container = document.getElementById('weather-container');
-  if (!container) return;
-  container.innerHTML = '<p>Loading forecast…</p>';
+    // --- Fetch 7-Day Weather Forecast from OpenWeatherMap ---
+    const API_KEY = "50832881bb772678b299d79ab211d9e6";
+    const LAT = 47.6777;
+    const LON = -116.7805;
+    const forecastGrid = document.getElementById("forecast-grid");
+    const skycons = new Skycons({ color: "white" });
 
-  try {
-    const res = await fetch(apiUrl);
-    const data = await res.json();
-    const days = data?.daily?.time ?? [];
-    const highs = data?.daily?.temperature_2m_max ?? [];
-    const lows = data?.daily?.temperature_2m_min ?? [];
-    const rain = data?.daily?.precipitation_probability_max ?? [];
-    const codes = data?.daily?.weathercode ?? [];
-
-    container.innerHTML = '';
-
-    const svgIcons = {
-      0: `<svg viewBox="0 0 64 64" class="sun-ray"><circle cx="32" cy="32" r="12"/><g stroke="#FFD93B" stroke-width="2"><line x1="32" y1="0" x2="32" y2="12"/><line x1="32" y1="52" x2="32" y2="64"/><line x1="0" y1="32" x2="12" y2="32"/><line x1="52" y1="32" x2="64" y2="32"/><line x1="8" y1="8" x2="18" y2="18"/><line x1="46" y1="46" x2="56" y2="56"/><line x1="8" y1="56" x2="18" y2="46"/><line x1="46" y1="18" x2="56" y2="8"/></g></svg>`,
-      1: `<svg viewBox="0 0 64 64"><ellipse cx="36" cy="28" rx="14" ry="14" fill="#FFD93B"/><ellipse cx="28" cy="36" rx="14" ry="10" fill="#B0C4DE" class="cloud"/></svg>`,
-      2: `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="36" rx="20" ry="12" fill="#B0C4DE" class="cloud"/></svg>`,
-      3: `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="36" rx="22" ry="14" fill="#778899" class="cloud"/></svg>`,
-      45: `<svg viewBox="0 0 64 64"><line x1="8" y1="32" x2="56" y2="32" stroke="#C0C0C0" stroke-width="3" class="cloud"/><line x1="8" y1="36" x2="56" y2="36" stroke="#C0C0C0" stroke-width="3" class="cloud"/></svg>`,
-      48: `<svg viewBox="0 0 64 64"><line x1="8" y1="32" x2="56" y2="32" stroke="#C0C0C0" stroke-width="3" class="cloud"/><line x1="8" y1="36" x2="56" y2="36" stroke="#C0C0C0" stroke-width="3" class="cloud"/></svg>`,
-      51: `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="28" rx="18" ry="12" fill="#B0C4DE" class="cloud"/><line class="drop" x1="24" y1="40" x2="24" y2="50" stroke="#00AFFF" stroke-width="3"/><line class="drop" x1="32" y1="40" x2="32" y2="50" stroke="#00AFFF" stroke-width="3"/><line class="drop" x1="40" y1="40" x2="40" y2="50" stroke="#00AFFF" stroke-width="3"/></svg>`,
-      61: `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="28" rx="18" ry="12" fill="#778899" class="cloud"/><line class="drop" x1="24" y1="40" x2="24" y2="52" stroke="#007BFF" stroke-width="3"/><line class="drop" x1="32" y1="40" x2="32" y2="52" stroke="#007BFF" stroke-width="3"/><line class="drop" x1="40" y1="40" x2="40" y2="52" stroke="#007BFF" stroke-width="3"/></svg>`,
-      71: `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="28" rx="18" ry="12" fill="#778899" class="cloud"/><circle class="flake" cx="24" cy="42" r="2" fill="#FFF"/><circle class="flake" cx="32" cy="46" r="2" fill="#FFF"/><circle class="flake" cx="40" cy="42" r="2" fill="#FFF"/></svg>`,
-      95: `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="28" rx="18" ry="12" fill="#778899" class="cloud"/><polygon points="32,32 28,44 36,44" fill="#FF8C00" class="flash"/></svg>`
-    };
-
-    for (let i = 0; i < days.length; i++) {
-      const dateStr = new Date(days[i]).toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' });
-      const high = highs[i] !== undefined ? Math.round(highs[i]) + '°F' : '—';
-      const low  = lows[i] !== undefined ? Math.round(lows[i]) + '°F' : '—';
-      const rainPct = rain[i] !== undefined ? Math.round(rain[i]) + '%' : '—';
-      const icon = svgIcons[codes[i]] || svgIcons[0];
-
-      const card = document.createElement('div');
-      card.className = 'day-card';
-      card.innerHTML = `
-        <h3>${dateStr}</h3>
-        <div class="weather-icon">${icon}</div>
-        <p class="temp-high">High: ${high}</p>
-        <p class="temp-low">Low: ${low}</p>
-        <p class="rain-chance">Rain: ${rainPct}</p>
-      `;
-      container.appendChild(card);
+    async function fetchWeather() {
+      try {
+        const res = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${LAT}&lon=${LON}&exclude=minutely,hourly,alerts&units=imperial&appid=${API_KEY}`);
+        const data = await res.json();
+        renderForecast(data.daily.slice(0, 7));
+      } catch (err) {
+        console.error(err);
+        forecastGrid.innerHTML = "<p>Weather data unavailable at the moment.</p>";
+      }
     }
-  } catch (err) {
-    console.error(err);
-    container.innerHTML = '<p>Unable to load forecast. Please try again later.</p>';
-  }
-})();
-</script>
-<!-- Skycons for animated weather icons -->
-<script src="https://darkskyapp.github.io/skycons/skycons.js"></script>
 
-<!-- Vanta.js for animated background -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
+    function renderForecast(days) {
+      forecastGrid.innerHTML = ""; // Clear loading text
 
-<script>
-  // --- Initialize Skycons (Animated Weather Icons) ---
-  const skycons = new Skycons({ color: "white" });
-
-  // Default icon while loading
-  skycons.add("weather-icon", Skycons.CLEAR_DAY);
-  skycons.play();
-
-  // --- Example Weather Data (Replace with your API later) ---
-  const exampleWeather = {
-    main: "Clouds",
-    temp: 58,
-    description: "Partly Cloudy",
-    location: "Rathdrum, ID"
-  };
-
-  document.getElementById("weather-location").textContent = exampleWeather.location;
-  document.getElementById("weather-description").textContent = exampleWeather.description;
-  document.getElementById("weather-temp").textContent = `${exampleWeather.temp}°F`;
-
-  // Pick the right Skycons icon based on the weather
-  const iconMap = {
-    Clear: Skycons.CLEAR_DAY,
-    Clouds: Skycons.PARTLY_CLOUDY_DAY,
-    Rain: Skycons.RAIN,
-    Snow: Skycons.SNOW,
-    Thunderstorm: Skycons.SLEET,
-    Drizzle: Skycons.RAIN,
-    Mist: Skycons.FOG,
-    Fog: Skycons.FOG
-  };
-  const currentIcon = iconMap[exampleWeather.main] || Skycons.CLEAR_DAY;
-  skycons.set("weather-icon", currentIcon);
-
-  // --- VANTA.js Realistic Clouds Background ---
-  VANTA.CLOUDS({
-    el: "#weather-section",
-    mouseControls: true,
-    touchControls: true,
-    minHeight: 200.00,
-    minWidth: 200.00,
-    skyColor: 0x4a90e2,
-    cloudColor: 0xffffff,
-    cloudShadowColor: 0xaaaaaa,
-    sunColor: 0xffcc00,
-    sunlightColor: 0xffee99,
-    speed: 1.00,
-    texturePath: ""
-  });
-</script>
-<script>
-  // --- Initialize Animated Background ---
-  VANTA.CLOUDS({
-    el: "#weather-section",
-    mouseControls: true,
-    touchControls: true,
-    minHeight: 300.00,
-    minWidth: 300.00,
-    skyColor: 0x4a90e2,
-    cloudColor: 0xffffff,
-    cloudShadowColor: 0xaaaaaa,
-    sunColor: 0xffcc00,
-    sunlightColor: 0xffee99,
-    speed: 0.75,
-  });
-
-  // --- Fetch Weather Data for Coeur d'Alene ---
-  const apiKey = "50832881bb772678b299d79ab211d9e6";
-  const lat = 47.6777;
-  const lon = -116.7805;
-  const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=imperial&appid=${apiKey}`;
-
-  const forecastGrid = document.getElementById("forecast-grid");
-  const skycons = new Skycons({ color: "white" });
-
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      forecastGrid.innerHTML = "";
-
-      data.daily.slice(0, 7).forEach((day, index) => {
+      days.forEach((day, index) => {
         const date = new Date(day.dt * 1000);
-        const dayName = date.toLocaleDateString("en-US", { weekday: "short" });
+        const dayName = date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
 
+        // Create day card
+        const card = document.createElement("div");
+        card.classList.add("forecast-day");
         const iconId = `icon-${index}`;
-        const tempDay = Math.round(day.temp.day);
-        const tempNight = Math.round(day.temp.night);
-        const description = day.weather[0].main;
-
-        const dayCard = document.createElement("div");
-        dayCard.classList.add("forecast-day");
-        dayCard.innerHTML = `
+        card.innerHTML = `
           <h3>${dayName}</h3>
           <canvas id="${iconId}" width="80" height="80"></canvas>
-          <p class="description">${description}</p>
-          <p class="temp">${tempDay}° / ${tempNight}°</p>
+          <p class="description">${day.weather[0].main}</p>
+          <p class="temp">${Math.round(day.temp.max)}° / ${Math.round(day.temp.min)}°</p>
+          <p class="rain-chance">Precip: ${Math.round(day.pop * 100)}%</p>
         `;
+        forecastGrid.appendChild(card);
 
-        forecastGrid.appendChild(dayCard);
-
-        // Map weather condition to Skycons animation
+        // Map weather conditions to Skycons
         const iconMap = {
           Clear: Skycons.CLEAR_DAY,
           Clouds: Skycons.PARTLY_CLOUDY_DAY,
@@ -343,20 +132,19 @@ renderWeather();
           Mist: Skycons.FOG,
           Fog: Skycons.FOG,
         };
-        const skyconIcon = iconMap[description] || Skycons.CLOUDY;
+        const skyconIcon = iconMap[day.weather[0].main] || Skycons.CLOUDY;
         skycons.add(iconId, skyconIcon);
       });
 
       skycons.play();
-    })
-    .catch(() => {
-      forecastGrid.innerHTML = "<p>Weather data unavailable at the moment.</p>";
-    });
-</script>
+    }
 
+    fetchWeather();
+  </script>
 
 </body>
 </html>
+
 
 
 
