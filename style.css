@@ -195,6 +195,58 @@ nav a {
     1px 1px 0 #000;
 }
 
+/* Framed weather forecast container */
+.weather-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #0d1b2a, #132536); /* same as hero background */
+  padding: 50px 20px;
+  border: 3px solid #000; /* black border around the frame */
+  border-radius: 16px;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+/* Forecast grid inside the frame */
+.forecast-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Forecast cards */
+.forecast-day {
+  background: rgba(28, 42, 74, 0.95); /* slightly transparent for clouds effect */
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000; /* white text with black outline */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 120px;
+}
+
+.forecast-day h3,
+.forecast-day p {
+  color: #fff;
+  text-shadow: 2px 2px 0 #000; /* ensures all text has black outline */
+}
+
+/* Responsive tweaks */
+@media (max-width:900px){
+  .forecast-day { min-width: 140px; }
+}
+
+@media (max-width:480px){
+  .forecast-day { width: 92%; }
+}
+
 .forecast-grid {
   display: flex;
   flex-wrap: wrap;
