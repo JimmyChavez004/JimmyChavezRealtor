@@ -262,6 +262,93 @@ footer {
 }
 
 /* ================== Weather Section ================== */
+<script>
+  // --- Location ---
+  const LAT = 47.6777;
+  const LON = -116.7805;
+  const forecastGrid = document.getElementById("forecast-grid");
+  const skycons = new Skycons({ color: "white" });
+
+  // --- Fetch 7-Day Weather Forecast from Open-Meteo in Fahrenheit ---
+  async function fetchWeather() {
+    try {
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&timezone=auto&temperature_unit=fahrenheit`;
+      const res = await fetch(url);
+      const data = await res.json();
+      renderForecast(data.daily);
+    } catch (err) {
+      console.error(err);
+      forecastGrid.innerHTML = "<p>Weather data unavailable at the moment.</p>";
+    }
+  }
+
+  // --- Map Open-Meteo weather codes to Skycons + description ---
+  const weatherMap = {
+    0: { icon: Skycons.CLEAR_DAY, desc: "Clear" },
+    1: { icon: Skycons.PARTLY_CLOUDY_DAY, desc: "Mainly Clear" },
+    2: { icon: Skycons.PARTLY_CLOUDY_DAY, desc: "Partly Cloudy" },
+    3: { icon: Skycons.CLOUDY, desc: "Cloudy" },
+    45: { icon: Skycons.FOG, desc: "Foggy" },
+    48: { icon: Skycons.FOG, desc: "Foggy" },
+    51: { icon: Skycons.RAIN, desc: "Drizzle" },
+    53: { icon: Skycons.RAIN, desc: "Drizzle" },
+    55: { icon: Skycons.RAIN, desc: "Drizzle" },
+    61: { icon: Skycons.RAIN, desc: "Rain" },
+    63: { icon: Skycons.RAIN, desc: "Rain" },
+    65: { icon: Skycons.RAIN, desc: "Heavy Rain" },
+    66: { icon: Skycons.SLEET, desc: "Sleet" },
+    67: { icon: Skycons.SLEET, desc: "Sleet" },
+    71: { icon: Skycons.SNOW, desc: "Snow" },
+    73: { icon: Skycons.SNOW, desc: "Snow" },
+    75: { icon: Skycons.SNOW, desc: "Heavy Snow" },
+    80: { icon: Skycons.RAIN, desc: "Showers" },
+    81: { icon: Skycons.RAIN, desc: "Showers" },
+    82: { icon: Skycons.RAIN, desc: "Heavy Showers" },
+    95: { icon: Skycons.SLEET, desc: "Thunderstorm" },
+    96: { icon: Skycons.SLEET, desc: "Thunderstorm" },
+    99: { icon: Skycons.SLEET, desc: "Thunderstorm" }
+  };
+
+  // --- Render Forecast Cards ---
+  function renderForecast(daily) {
+    forecastGrid.innerHTML = ""; // Clear previous content
+    const days = daily.time;
+
+    days.forEach((dateStr, index) => {
+      const date = new Date(dateStr);
+      const dayName = date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+      const max = Math.round(daily.temperature_2m_max[index]);
+      const min = Math.round(daily.temperature_2m_min[index]);
+      const rain = daily.precipitation_probability_max[index];
+      const code = daily.weathercode[index];
+
+      const { icon, desc } = weatherMap[code] || { icon: Skycons.CLOUDY, desc: "Cloudy" };
+      const iconId = `icon-${index}`;
+
+      // Create weather card
+      const card = document.createElement("div");
+      card.classList.add("forecast-day");
+      card.innerHTML = `
+        <h3>${dayName}</h3>
+        <canvas id="${iconId}" width="80" height="80"></canvas>
+        <p>${desc}</p>
+        <p><span class="temp-high">${max}°F</span> / <span class="temp-low">${min}°F</span></p>
+        <p class="rain-chance">Precip: ${rain}%</p>
+      `;
+      forecastGrid.appendChild(card);
+
+      // Animate card visibility
+      setTimeout(() => card.classList.add("visible"), index * 100);
+
+      skycons.add(iconId, icon);
+    });
+
+    skycons.play();
+  }
+
+  fetchWeather();
+</script>
+
 .weather-section {
   position: relative;
   text-align: center;
