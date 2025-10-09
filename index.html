@@ -49,6 +49,71 @@ const API_KEY = "50832881bb772678b299d79ab211d9e6";
 const LAT = 47.6777;
 const LON = -116.7805;
 
+// Fetch 7-day forecast from OpenWeatherMap
+async function fetchWeather() {
+  const res = await fetch(
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${LAT}&lon=${LON}&exclude=current,minutely,hourly,alerts&units=imperial&appid=${API_KEY}`
+  );
+  const data = await res.json();
+  return data.daily.slice(0, 7);
+}
+
+// Map OpenWeatherMap icon codes to animated SVGs
+function getAnimatedIcon(icon) {
+  const icons = {
+    "01d": `<div class="anim-icon sun"><div class="sun-core"></div><div class="sun-ray ray1"></div><div class="sun-ray ray2"></div><div class="sun-ray ray3"></div><div class="sun-ray ray4"></div></div>`, // clear day
+    "01n": `<div class="anim-icon moon">🌙</div>`,
+    "02d": `<div class="anim-icon sun-cloud"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="sun-core"></div></div>`,
+    "02n": `<div class="anim-icon moon-cloud"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div>🌙</div>`,
+    "03d": `<div class="anim-icon cloud"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div></div>`,
+    "03n": `<div class="anim-icon cloud"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div></div>`,
+    "04d": `<div class="anim-icon cloud-heavy"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div></div>`,
+    "04n": `<div class="anim-icon cloud-heavy"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div></div>`,
+    "09d": `<div class="anim-icon rain"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="raindrops"><div class="drop"></div><div class="drop"></div><div class="drop"></div></div></div>`,
+    "09n": `<div class="anim-icon rain"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="raindrops"><div class="drop"></div><div class="drop"></div><div class="drop"></div></div></div>`,
+    "10d": `<div class="anim-icon rain-sun"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="sun-core"></div><div class="raindrops"><div class="drop"></div><div class="drop"></div></div></div>`,
+    "10n": `<div class="anim-icon rain-moon"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div>🌙<div class="raindrops"><div class="drop"></div><div class="drop"></div></div></div>`,
+    "13d": `<div class="anim-icon snow"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="flakes"><div class="flake"></div><div class="flake"></div><div class="flake"></div></div></div>`,
+    "13n": `<div class="anim-icon snow"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="flakes"><div class="flake"></div><div class="flake"></div><div class="flake"></div></div></div>`,
+    "11d": `<div class="anim-icon thunder"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="bolt"></div></div>`,
+    "11n": `<div class="anim-icon thunder"><div class="cloud cloud-front"></div><div class="cloud cloud-back"></div><div class="bolt"></div></div>`
+  };
+  return icons[icon] || icons["01d"];
+}
+
+// Create each day’s forecast card
+function createDayCard(day) {
+  const date = new Date(day.dt * 1000);
+  const options = { weekday: "short", month: "short", day: "numeric" };
+  const dayStr = date.toLocaleDateString("en-US", options);
+
+  return `
+    <div class="day-card">
+      <h3>${dayStr}</h3>
+      <div class="weather-icon">${getAnimatedIcon(day.weather[0].icon)}</div>
+      <p class="temp-high">High: ${Math.round(day.temp.max)}°F</p>
+      <p class="temp-low">Low: ${Math.round(day.temp.min)}°F</p>
+      <p class="rain-chance">Precip: ${Math.round(day.pop * 100)}%</p>
+    </div>
+  `;
+}
+
+// Render forecast
+async function renderWeather() {
+  const days = await fetchWeather();
+  const container = document.getElementById("weather-container");
+  container.innerHTML = days.map(createDayCard).join("");
+}
+
+renderWeather();
+</script>
+
+
+<script>
+const API_KEY = "50832881bb772678b299d79ab211d9e6";
+const LAT = 47.6777;
+const LON = -116.7805;
+
 async function fetchWeather() {
   const res = await fetch(
     `https://api.openweathermap.org/data/2.5/onecall?lat=${LAT}&lon=${LON}&exclude=current,minutely,hourly,alerts&units=imperial&appid=${API_KEY}`
