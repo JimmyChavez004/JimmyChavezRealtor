@@ -612,5 +612,31 @@ footer{background:#f8f8f8;padding:18px 12px;text-align:center;color:#333}
   text-decoration: underline;
 }
 
+#weather-section {
+  position: relative;
+  text-align: center;
+  color: white;
+  padding: 80px 20px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+#weather-section canvas {
+  margin: 20px auto;
+  display: block;
+}
+
+#weather-info {
+  position: relative;
+  z-index: 2;
+}
+
+#weather-section::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
 
 
