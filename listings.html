@@ -5,6 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Listings | Jimmy Chavez Realtor®</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* --- Basic Reset & Typography --- */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    header, footer {
+      background-color: #004080;
+      color: #fff;
+      padding: 1rem 2rem;
+    }
+    header h1 {
+      margin: 0 0 0.5rem;
+    }
+    nav a {
+      margin-right: 1rem;
+      padding: 0.25rem 0.5rem;
+      color: #fff;
+    }
+    nav a.active {
+      border-bottom: 2px solid #fff;
+      font-weight: bold;
+    }
+
+    /* --- Listings Grid --- */
+    .listings-grid {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .listings-grid h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .listing-card {
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+    .listing-card:hover {
+      transform: translateY(-5px);
+    }
+    .listing-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .listing-card h3 {
+      margin: 1rem;
+      font-size: 1.25rem;
+    }
+    .listing-card p {
+      margin: 0 1rem 1rem;
+    }
+    .listing-card .price {
+      font-weight: bold;
+      margin: 0 1rem 1rem;
+      color: #004080;
+    }
+    .listing-card .btn {
+      margin: 0 1rem 1rem;
+      padding: 0.5rem;
+      background-color: #004080;
+      color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+    }
+    .listing-card .btn:hover {
+      background-color: #0066cc;
+    }
+
+    /* --- Footer --- */
+    footer .footer-content {
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .broker-logo-inline {
+      height: 24px;
+      vertical-align: middle;
+      margin-left: 0.3rem;
+    }
+
+    @media(max-width: 500px){
+      header, footer {
+        text-align: center;
+      }
+      nav a {
+        display: block;
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -22,14 +132,15 @@
     <h2>Featured Properties</h2>
     <div class="grid">
       <!-- Example Listing Card -->
-      <div class="listing-card">
-        <img src="images/sample-home.jpg" alt="No Current Listings at this time">
-        <h3></h3>
-        <p>Please check back soon...</p>
-        <p class="price"></p>
+      <article class="listing-card">
+        <img src="images/sample-home.jpg" alt="Sample Home Listing">
+        <h3>No Current Listings</h3>
+        <p>Please check back soon for the latest properties!</p>
+        <p class="price">—</p>
         <a href="#" class="btn">View Details</a>
-      </div>
-      <!-- Add more listing cards below -->
+      </article>
+
+      <!-- Add more listing cards here -->
     </div>
   </section>
 
