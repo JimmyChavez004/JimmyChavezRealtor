@@ -3,30 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Jimmy Chavez, REALTOR® | Future Realty Idaho</title>
+  <title>About Jimmy Chavez, REALTOR® | Future Realty</title>
   <link rel="stylesheet" href="style.css" />
-  <meta name="description" content="Learn more about Jimmy Chavez, REALTOR® with Future Realty Idaho — a dedicated real estate professional serving Coeur d’Alene, Hayden, Rathdrum, and North Idaho communities." />
+  <meta name="description" content="Learn more about Jimmy Chavez, REALTOR® with Future Realty — serving Coeur d’Alene, Hayden, Rathdrum, and all of North Idaho with professionalism, integrity, and care." />
+  <style>
+    .about-hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #0d1b2a, #1b263b);
+      color: #f5f5f5;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .about-hero img {
+      max-width: 220px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      animation: fadeInUp 1.4s ease-in-out;
+    }
+
+    .about-hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .about-hero p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #dcdcdc;
+    }
+
+    .container ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .container ul li {
+      background: #112b3c;
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      color: #f5f5f5;
+      font-size: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 
 <body>
   <!-- Header -->
   <header>
-    <h1>About Jimmy Chavez, Realtor®</h1>
+    <h1>About Jimmy Chavez, REALTOR®</h1>
     <nav>
-  <a href="index.html">Home</a>
-  <a href="listings.html">Listings</a>
-  <a href="blog.html">Blog</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</nav>
+      <a href="index.html">Home</a>
+      <a href="listings.html">Listings</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html" class="active">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
 
   <!-- About Section -->
-  <section class="hero" style="flex-direction: column; text-align: center;">
-    <img src="images/Headshot.jpeg" alt="Jimmy Chavez Realtor Headshot" style="max-width: 220px; border-radius: 50%; margin-bottom: 20px;" />
+  <section class="about-hero">
+    <img src="images/Headshot.jpeg" alt="Jimmy Chavez Realtor Headshot" />
     <h1>Meet Jimmy Chavez, REALTOR®</h1>
-    <p style="max-width: 700px; color: #dcdcdc;">
-      Hi, I’m <strong>Jimmy Chavez</strong>, a dedicated REALTOR® with <strong>Future Realty</strong>, serving the beautiful communities of Coeur d’Alene, Hayden, Rathdrum, and surrounding North Idaho areas.
+    <p>
+      Hi, I’m <strong>Jimmy Chavez</strong>, a dedicated REALTOR® with 
+      <strong>Future Realty</strong>, proudly serving the communities of Coeur d’Alene, Hayden, Rathdrum, and Post Falls.
     </p>
   </section>
 
@@ -34,14 +88,14 @@
     <h2>My Mission</h2>
     <p>
       My mission is simple — to help families and individuals find the home that truly fits their lifestyle, goals, and future.  
-      Whether you’re a first-time buyer, an investor, or looking to sell your current home, I’m here to make the process clear, confident, and rewarding.
+      Whether you’re a first-time buyer, an investor, or looking to sell your home, I’m here to make the process clear, confident, and rewarding.
     </p>
 
     <h2>Why Work With Me</h2>
     <ul>
       <li>✔ Local expertise — I live and work right here in North Idaho.</li>
-      <li>✔ Honest communication and full transparency throughout the process.</li>
-      <li>✔ Backed by the trusted team at <strong>Future Realty Idaho</strong>.</li>
+      <li>✔ Honest communication and full transparency every step of the way.</li>
+      <li>✔ Backed by the trusted team at <strong>Future Realty</strong>.</li>
       <li>✔ A commitment to helping you achieve your real estate goals efficiently and stress-free.</li>
     </ul>
 
@@ -49,15 +103,15 @@
     <p>
       I live in Rathdrum, Idaho, with my wife and three children.  
       Outside of real estate, I work at the Post Office and value the importance of community, hard work, and balance.  
-      I’ve learned that life’s too short not to pursue what you’re passionate about — and for me, that’s helping others move forward in life through real estate.
+      I’ve learned that life’s too short not to pursue what you’re passionate about — and for me, that’s helping others move forward through real estate.
     </p>
   </div>
 
   <!-- Footer -->
   <footer>
     <div class="footer-content">
-      <p>© 2025 Jimmy Chavez, REALTOR® — Future Realty Idaho</p>
-      <img src="images/future-realty-idaho-logo.png" alt="Future Realty Idaho Logo" class="broker-logo" />
+      <p>© 2025 Jimmy Chavez, REALTOR® — Future Realty</p>
+      <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo" />
       <p class="built-with">Built with ❤️ using GitHub Pages</p>
     </div>
   </footer>
