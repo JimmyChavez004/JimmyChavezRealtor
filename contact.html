@@ -1,13 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Jimmy Chavez | Future Realty</title>
-  <meta name="description" content="Contact Jimmy Chavez, Realtor® at Future Realty in Idaho. Ask questions, schedule showings, or get advice on buying or selling your home.">
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Contact Jimmy Chavez, Realtor® at Future Realty in North Idaho. Ask questions, schedule showings, or get advice on buying or selling your home.">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* --- Hero Section --- */
+    .contact-hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #0d1b2a, #1b263b);
+      color: #f5f5f5;
+    }
+    .contact-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .contact-hero p {
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #dcdcdc;
+    }
+
+    /* --- Form Styling --- */
+    .contact-form {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    .contact-form h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #004080;
+    }
+    .contact-form p {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+    .contact-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #004080;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-bottom: 1.2rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    .contact-form button {
+      display: block;
+      width: 100%;
+      padding: 0.7rem;
+      background-color: #004080;
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .contact-form button:hover {
+      background-color: #0066cc;
+    }
+
+    /* --- Phone Contact --- */
+    .contact-phone {
+      text-align: center;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #004080;
+    }
+
+    @media(max-width:600px){
+      .contact-hero h1 { font-size: 2rem; }
+      .contact-form { padding: 15px; }
+    }
+  </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
     <h1>Jimmy Chavez, Realtor®</h1>
     <nav>
@@ -19,47 +106,45 @@
     </nav>
   </header>
 
-  <main>
-    <section class="contact-form">
-      <h2>Contact Me</h2>
-      <p>Have a question or want to talk real estate? Send me a message below and I’ll get back to you soon.</p>
-      
-      <form action="https://formspree.io/f/mvgwqwka" method="POST">
-        <label for="name">Your Name</label>
-        <input id="name" type="text" name="name" placeholder="Your Name" required>
+  <!-- Hero Section -->
+  <section class="contact-hero">
+    <h1>Get in Touch</h1>
+    <p>Have questions or want to discuss your real estate goals? Send me a message or call/text me directly.</p>
+  </section>
 
-        <label for="email">Your Email</label>
-        <input id="email" type="email" name="email" placeholder="Your Email" required>
+  <!-- Contact Form -->
+  <section class="contact-form">
+    <h2>Contact Me</h2>
+    <p>I’ll respond as soon as possible!</p>
+    <form action="https://formspree.io/f/mvgwqwka" method="POST">
+      <label for="name">Your Name</label>
+      <input id="name" type="text" name="name" placeholder="Your Name" required>
 
-        <label for="subject">Subject (optional)</label>
-        <input id="subject" type="text" name="subject" placeholder="Subject">
+      <label for="email">Your Email</label>
+      <input id="email" type="email" name="email" placeholder="Your Email" required>
 
-        <label for="message">Your Message</label>
-        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+      <label for="subject">Subject (optional)</label>
+      <input id="subject" type="text" name="subject" placeholder="Subject">
 
-        <input type="hidden" name="_next" value="thankyou.html">
-        <input type="hidden" name="_captcha" value="false">
+      <label for="message">Your Message</label>
+      <textarea id="message" name="message" placeholder="Your Message" required></textarea>
 
-        <button type="submit">Send Message</button>
-      </form>
+      <input type="hidden" name="_next" value="thankyou.html">
+      <input type="hidden" name="_captcha" value="false">
 
-      <p style="text-align:center; margin-top:10px;">
-        Or call/text me at <strong aria-label="Phone number">(805) 868-6369</strong>
-      </p>
-    </section>
-  </main>
+      <button type="submit">Send Message</button>
+    </form>
+    <p class="contact-phone">Or call/text me at <strong aria-label="Phone number">(805) 868-6369</strong></p>
+  </section>
 
+  <!-- Footer -->
   <footer role="contentinfo">
     <div class="footer-content">
       <p>© 2025 Jimmy Chavez, Realtor® — 
-        <a href="https://www.futurerealtyidaho.com" target="_blank" rel="noopener">
-          <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline broker-logo-glow">
-        </a> Future Realty
+         <img src="images/future-realty-idaho-logo.png" alt="Future Realty Logo" class="broker-logo-inline"> Future Realty
       </p>
       <p class="built-with">Built with ❤️ on GitHub Pages</p>
     </div>
   </footer>
 </body>
 </html>
-
-
