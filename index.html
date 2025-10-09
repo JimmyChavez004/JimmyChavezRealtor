@@ -38,12 +38,54 @@
   </div>
 </section>
 
-
-  <!-- Weather Section -->
-  <section id="weather-section">
-  <h2>7-Day Forecast for Coeur d’Alene, ID</h2>
-  <div id="forecast-grid"></div>
+<!-- 7-Day Forecast Section -->
+<section class="weather-section">
+  <h2>7-Day Weather Forecast — Coeur d'Alene, ID</h2>
+  <div id="weather-container" class="weather-container"></div>
 </section>
+
+<script>
+const API_KEY = "50832881bb772678b299d79ab211d9e6";
+const LAT = 47.6777;
+const LON = -116.7805;
+
+async function fetchWeather() {
+  const res = await fetch(
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${LAT}&lon=${LON}&exclude=current,minutely,hourly,alerts&units=imperial&appid=${API_KEY}`
+  );
+  const data = await res.json();
+  return data.daily.slice(0, 7); // 7-day forecast
+}
+
+function getWeatherIcon(icon) {
+  // OpenWeatherMap icons
+  return `<img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="weather icon" style="width:60px;">`;
+}
+
+function createDayCard(day) {
+  const date = new Date(day.dt * 1000);
+  const options = { weekday: "short", month: "short", day: "numeric" };
+  const dayStr = date.toLocaleDateString("en-US", options);
+
+  return `
+    <div class="day-card">
+      <h3>${dayStr}</h3>
+      <div class="weather-icon">${getWeatherIcon(day.weather[0].icon)}</div>
+      <p class="temp-high">High: ${Math.round(day.temp.max)}°F</p>
+      <p class="temp-low">Low: ${Math.round(day.temp.min)}°F</p>
+      <p class="rain-chance">Precip: ${Math.round(day.pop * 100)}%</p>
+    </div>
+  `;
+}
+
+async function renderWeather() {
+  const days = await fetchWeather();
+  const container = document.getElementById("weather-container");
+  container.innerHTML = days.map(createDayCard).join("");
+}
+
+renderWeather();
+</script>
 
 
 
