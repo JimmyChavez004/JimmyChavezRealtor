@@ -1,4 +1,4 @@
-/* ================== General Styles & Variables ================== */
+/* ================== General Styles ================== */
 :root {
   --accent: #007bff;
   --bg: #0a0a0a;
@@ -28,7 +28,7 @@ a:hover {
   color: var(--accent);
 }
 
-/* ================== Header & Navigation ================== */
+/* ================== Header + Navigation ================== */
 header {
   background: #0d1b2a;
   padding: 20px;
@@ -96,7 +96,7 @@ nav a {
   transform: scale(1.05);
 }
 
-/* ================== Broker Logo Effects ================== */
+/* Logo with White Background */
 .logo-white-bg {
   background-color: #fff;
   padding: 4px 8px;
@@ -109,6 +109,77 @@ nav a {
   vertical-align: middle;
 }
 
+/* ================== Contact Form ================== */
+.contact-form {
+  max-width: 680px;
+  margin: 28px auto;
+  padding: 22px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  color: #222;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.contact-form h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.contact-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+/* ================== Footer ================== */
+footer {
+  background: #f8f8f8;
+  text-align: center;
+  padding: 18px 12px;
+  color: #333;
+  border-top: 1px solid #ddd;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.built-with {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ================== Broker Logo Effects ================== */
 .broker-logo-glow {
   position: relative;
   display: inline-block;
@@ -135,6 +206,7 @@ nav a {
   100% { transform: translate(-50%, -50%) scale(0.94); opacity: 0.45; }
 }
 
+/* Broker logo card */
 .broker-logo-card {
   display: inline-flex;
   align-items: center;
@@ -175,6 +247,20 @@ nav a {
   box-shadow: 0 6px 20px rgba(0,0,0,0.28);
 }
 
+@media (max-width: 480px) {
+  .broker-logo-card {
+    padding: 4px 8px;
+    gap: 4px;
+    border-radius: 8px;
+  }
+
+  .broker-logo-card::after {
+    width: 120%;
+    height: 120%;
+    filter: blur(12px);
+  }
+}
+
 /* ================== Weather Section ================== */
 .weather-section {
   position: relative;
@@ -206,15 +292,14 @@ nav a {
 }
 
 .forecast-day {
-  background: rgba(0, 123, 255, 0.15);
-  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0, 123, 255, 0.85);
   border-radius: 16px;
-  padding: 18px 12px;
+  padding: 20px 15px;
   width: 100%;
   max-width: 160px;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-  backdrop-filter: blur(8px);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
   transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.5s ease;
   opacity: 0;
   position: relative;
@@ -223,6 +308,24 @@ nav a {
 .forecast-day.visible {
   opacity: 1;
   animation: fadeInUp 0.5s ease forwards;
+}
+
+.forecast-day h3 {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.forecast-day p {
+  font-size: 0.9rem;
+  margin: 4px 0;
+  color: #f0f0f0;
+}
+
+.forecast-day canvas {
+  display: block;
+  margin: 0 auto 10px auto;
 }
 
 @keyframes fadeInUp {
@@ -307,78 +410,17 @@ nav a {
   text-align:left;
 }
 
-.blog-card h3 { color: var(--accent); }
-.blog-card a { color: var(--accent); text-decoration:none; }
-.blog-card a:hover { text-decoration: underline; }
-
-/* ================== Contact Form ================== */
-.contact-form {
-  max-width: 680px;
-  margin: 28px auto;
-  padding: 22px;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  color: #222;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+.blog-card h3 {
+  color: var(--accent);
 }
 
-.contact-form h2 {
-  margin-top: 0;
-  text-align: center;
+.blog-card a {
+  color: var(--accent);
+  text-decoration:none;
 }
 
-.contact-form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.contact-form button {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  background: var(--accent);
-  color: #fff;
-  border: 0;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.contact-form button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
-}
-
-/* ================== Footer ================== */
-footer {
-  background: #f8f8f8;
-  text-align: center;
-  padding: 18px 12px;
-  color: #333;
-  border-top: 1px solid #ddd;
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-.built-with {
-  font-size: 0.85rem;
-  color: var(--muted);
+.blog-card a:hover {
+  text-decoration: underline;
 }
 
 /* ================== Responsive ================== */
@@ -389,7 +431,7 @@ footer {
   .hero-left p { font-size: 1rem; }
   .hero-right img { max-width: 200px; }
   .broker-logo-inline { height: 48px; }
-  .forecast-day { width: 140px; }
+  .forecast-day { max-width: 140px; }
 }
 
 @media (max-width:480px){
