@@ -5,150 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jimmy Chavez, Realtor® | Future Realty</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* ================== Hero Section + Broker Logo ================== */
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 40px;
-      padding: 50px 20px;
-      background: linear-gradient(135deg, #0d1b2a, #132536);
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-left h1 {
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-      color: #ffffff;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-    }
-
-    .broker-logo-glow::after {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 140%;
-      height: 140%;
-      border-radius: 14px;
-      background: radial-gradient(circle, rgba(0,123,255,0.45) 0%, rgba(19,37,54,0.2) 70%);
-      filter: blur(18px);
-      opacity: 0.6;
-      animation: pulseGlowHero 2.5s ease-in-out infinite;
-      z-index: -1;
-    }
-
-    @keyframes pulseGlowHero {
-      0%   { transform: translate(-50%, -50%) scale(0.94); opacity: 0.45; }
-      50%  { transform: translate(-50%, -50%) scale(1.08); opacity: 0.75; }
-      100% { transform: translate(-50%, -50%) scale(0.94); opacity: 0.45; }
-    }
-
-    /* ================== Weather Section (Floating Cloud Style) ================== */
-    .weather-section {
-      position: relative;
-      text-align: center;
-      color: #fff;
-      padding: 60px 20px;
-      background: linear-gradient(to bottom, rgba(10,10,10,0.4), rgba(19,37,54,0.6));
-      overflow: hidden;
-      z-index: 1;
-      border-top: 3px solid #007bff;
-    }
-
-    .weather-section h2 {
-      margin-bottom: 30px;
-      font-size: 1.9rem;
-      font-weight: 600;
-      color: #00bfff;
-      text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
-    }
-
-    .forecast-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 20px;
-      justify-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    .forecast-day {
-      background: rgba(0, 123, 255, 0.15);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 16px;
-      padding: 18px 12px;
-      width: 100%;
-      max-width: 160px;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-      backdrop-filter: blur(8px);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.5s ease;
-      opacity: 0;
-      position: relative;
-    }
-
-    .forecast-day::after {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 140%;
-      height: 140%;
-      border-radius: 16px;
-      background: radial-gradient(circle, rgba(0,123,255,0.35) 0%, rgba(19,37,54,0.1) 70%);
-      filter: blur(14px);
-      opacity: 0.5;
-      z-index: -1;
-      animation: pulseCloudGlow 3s ease-in-out infinite;
-    }
-
-    @keyframes pulseCloudGlow {
-      0%   { transform: translate(-50%, -50%) scale(0.96); opacity: 0.45; }
-      50%  { transform: translate(-50%, -50%) scale(1.04); opacity: 0.75; }
-      100% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.45; }
-    }
-
-    .forecast-day h3 {
-      margin: 6px 0;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #00bfff;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-    }
-
-    .forecast-day p {
-      margin: 4px 0;
-      font-size: 0.9rem;
-      color: #fff;
-    }
-
-    .forecast-day canvas {
-      display: block;
-      margin: 0 auto 8px auto;
-    }
-
-    .forecast-day.visible {
-      opacity: 1;
-      animation: fadeInUp 0.5s ease forwards;
-    }
-
-    .forecast-day:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 26px rgba(0,0,0,0.55);
-    }
-
-    @keyframes fadeInUp {
-      0% { transform: translateY(10px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-  </style>
 </head>
 <body>
 
@@ -203,12 +59,15 @@
   </footer>
 
   <!-- Scripts -->
+  <!-- Skycons for animated weather icons -->
   <script src="https://darkskyapp.github.io/skycons/skycons.js"></script>
+
+  <!-- VANTA.js for animated clouds background -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
 
   <script>
-    // --- VANTA Clouds Background ---
+    // --- Initialize VANTA Clouds Background ---
     VANTA.CLOUDS({
       el: "#weather-section",
       mouseControls: true,
@@ -216,32 +75,36 @@
       minHeight: 300.00,
       minWidth: 300.00,
       skyColor: 0x4a90e2,
-      cloudColor: 0xf0f0f0,
-      cloudShadowColor: 0x888888,
+      cloudColor: 0xffffff,
+      cloudShadowColor: 0xaaaaaa,
       sunColor: 0xffcc00,
       sunlightColor: 0xffee99,
       speed: 0.75,
     });
 
-    // --- Weather API (Fahrenheit + Description) ---
+    // --- Fetch 7-Day Weather Forecast from Open-Meteo (Fahrenheit) ---
     const LAT = 47.6777;
     const LON = -116.7805;
     const forecastGrid = document.getElementById("forecast-grid");
     const skycons = new Skycons({ color: "white" });
 
     const weatherDescriptions = {
-      0: "Clear", 1: "Partly Cloudy", 2: "Partly Cloudy", 3: "Cloudy",
-      45: "Fog", 48: "Fog",
-      51: "Drizzle", 53: "Drizzle", 55: "Drizzle",
-      61: "Rain", 63: "Rain", 65: "Rain",
-      71: "Snow", 73: "Snow", 75: "Snow",
-      80: "Showers", 81: "Showers", 82: "Showers",
-      95: "Thunderstorm", 96: "Thunderstorm", 99: "Thunderstorm"
+      0: "Clear",
+      1: "Partly Cloudy",
+      2: "Partly Cloudy",
+      3: "Cloudy",
+      45: "Fog",
+      48: "Fog",
+      51: "Drizzle",
+      61: "Rain",
+      71: "Snow",
+      80: "Rain Showers",
+      95: "Thunderstorm"
     };
 
     async function fetchWeather() {
       try {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&temperature_unit=fahrenheit&timezone=auto`;
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&timezone=auto&temperature_unit=fahrenheit`;
         const res = await fetch(url);
         const data = await res.json();
         renderForecast(data.daily);
@@ -252,8 +115,10 @@
     }
 
     function renderForecast(daily) {
-      forecastGrid.innerHTML = "";
-      daily.time.forEach((dateStr, index) => {
+      forecastGrid.innerHTML = ""; // Clear loading text
+      const days = daily.time;
+
+      days.forEach((dateStr, index) => {
         const date = new Date(dateStr);
         const dayName = date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
         const max = Math.round(daily.temperature_2m_max[index]);
@@ -262,35 +127,36 @@
         const code = daily.weathercode[index];
         const description = weatherDescriptions[code] || "Unknown";
 
+        // Map weathercode to Skycons
         const iconMap = {
-          0: Skycons.CLEAR_DAY, 1: Skycons.PARTLY_CLOUDY_DAY, 2: Skycons.PARTLY_CLOUDY_DAY, 3: Skycons.CLOUDY,
-          45: Skycons.FOG, 48: Skycons.FOG,
-          51: Skycons.RAIN, 53: Skycons.RAIN, 55: Skycons.RAIN,
-          61: Skycons.RAIN, 63: Skycons.RAIN, 65: Skycons.RAIN,
-          71: Skycons.SNOW, 73: Skycons.SNOW, 75: Skycons.SNOW,
-          80: Skycons.RAIN, 81: Skycons.RAIN, 82: Skycons.RAIN,
-          95: Skycons.SLEET, 96: Skycons.SLEET, 99: Skycons.SLEET
+          0: Skycons.CLEAR_DAY,
+          1: Skycons.PARTLY_CLOUDY_DAY,
+          2: Skycons.PARTLY_CLOUDY_DAY,
+          3: Skycons.CLOUDY,
+          45: Skycons.FOG,
+          48: Skycons.FOG,
+          51: Skycons.RAIN,
+          61: Skycons.RAIN,
+          71: Skycons.SNOW,
+          80: Skycons.RAIN,
+          95: Skycons.SLEET
         };
-
         const iconId = `icon-${index}`;
         const skyconIcon = iconMap[code] || Skycons.CLOUDY;
 
+        // Create weather card
         const card = document.createElement("div");
         card.classList.add("forecast-day");
         card.innerHTML = `
           <h3>${dayName}</h3>
           <canvas id="${iconId}" width="80" height="80"></canvas>
           <p>${description}</p>
-          <p>${max}° / ${min}° F</p>
-          <p>Precip: ${rain}%</p>
+          <p class="temp-high">${max}°F</p>
+          <p class="temp-low">${min}°F</p>
+          <p class="rain-chance">Precip: ${rain}%</p>
         `;
-
         forecastGrid.appendChild(card);
         skycons.add(iconId, skyconIcon);
-
-        setTimeout(() => {
-          card.classList.add("visible");
-        }, index * 150);
       });
 
       skycons.play();
